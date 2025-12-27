@@ -58,10 +58,10 @@ export function Header() {
 			>
 				<Link to="/" className="flex items-center">
 					<img
-						src="/imgs/logo-tbpar.webp"
+						src="/imgs/logo-tbpar-nav.webp"
 						alt="TBPAR"
 						className="w-auto"
-						style={{ height: '60px' }}
+						style={{ height: '70px' }}
 					/>
 				</Link>
 

@@ -5,8 +5,10 @@ import type React from "react"
 import { useState } from "react"
 import { ArrowUpRight, Calendar } from "lucide-react"
 import { Link } from "react-router-dom"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export function LetsWorkTogether() {
+    const { t } = useLanguage()
     const [isHovered, setIsHovered] = useState(false)
     const [isClicked, setIsClicked] = useState(false)
     const [showSuccess, setShowSuccess] = useState(false)
@@ -46,7 +48,7 @@ export function LetsWorkTogether() {
                                 transitionDelay: "100ms",
                             }}
                         >
-                            Perfeito
+                            {t('contact.work.perfect')}
                         </span>
                         <h3
                             className="text-3xl font-light tracking-tight text-foreground transition-all duration-500 sm:text-4xl"
@@ -56,7 +58,7 @@ export function LetsWorkTogether() {
                                 transitionDelay: "200ms",
                             }}
                         >
-                            Vamos conversar
+                            {t('contact.work.talk')}
                         </h3>
                     </div>
 
@@ -107,7 +109,7 @@ export function LetsWorkTogether() {
                                     color: isButtonHovered ? "var(--background)" : "var(--foreground)",
                                 }}
                             >
-                                Enviar E-mail
+                                {t('contact.work.email')}
                             </span>
                             <ArrowUpRight
                                 className="size-4 transition-all duration-500 sm:size-5"
@@ -155,7 +157,7 @@ export function LetsWorkTogether() {
                         <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
                     </span>
                     <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
-                        Disponível para novas parcerias
+                        {t('contact.available')}
                     </span>
                 </div>
 
@@ -183,7 +185,7 @@ export function LetsWorkTogether() {
                                         transform: isHovered && !isClicked ? "translateY(-8%)" : "translateY(0)",
                                     }}
                                 >
-                                    Vamos trabalhar
+                                    {t('contact.work.title1')}
                                 </span>
                             </span>
                             <span className="block overflow-hidden">
@@ -193,7 +195,7 @@ export function LetsWorkTogether() {
                                         transform: isHovered && !isClicked ? "translateY(-8%)" : "translateY(0)",
                                     }}
                                 >
-                                    <span className="text-muted-foreground/60">juntos</span>
+                                    <span className="text-muted-foreground/60">{t('contact.work.title2')}</span>
                                 </span>
                             </span>
                         </h2>
@@ -254,7 +256,7 @@ export function LetsWorkTogether() {
                     }}
                 >
                     <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                        Tem um projeto em mente? Adoraríamos ouvir sobre ele. Vamos criar algo excepcional juntos.
+                        {t('contact.work.description')}
                     </p>
                     <span className="text-xs tracking-widest uppercase text-muted-foreground/60">contato@holdinggroup.com</span>
                 </div>

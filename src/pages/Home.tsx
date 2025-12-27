@@ -41,9 +41,9 @@ const Home = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Thomas Beck",
-      affiliation: "CEO & Fundador",
-      quote: "Criar algo inspirador, passando segurança.",
+      name: t('team.thomas.name'),
+      affiliation: t('team.thomas.role'),
+      quote: t('team.thomas.quote'),
       imageSrc: "/imgs/thomas.webp",
       thumbnailSrc: "/imgs/thomas.webp",
     },
@@ -218,7 +218,7 @@ const Home = () => {
           <section className="relative mx-auto max-w-3xl">
             <h2 className="mb-5 text-center text-foreground">
               <span className="block text-base md:text-lg font-normal text-muted-foreground">{t('nav.partners')}</span>
-              <span className="block text-xl md:text-2xl font-semibold tracking-tight mt-1">Empresas de Excelência</span>
+              <span className="block text-xl md:text-2xl font-semibold tracking-tight mt-1">{t('home.logocloud.title')}</span>
             </h2>
             <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
 
@@ -235,10 +235,10 @@ const Home = () => {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-                Presença Global
+                {t('home.map.title')}
               </h2>
               <p className="text-muted-foreground text-lg">
-                Conectando mercados e criando valor em escala internacional
+                {t('home.map.subtitle')}
               </p>
             </div>
             <WorldMap
@@ -331,10 +331,10 @@ const Home = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-              Nossa Equipe
+              {t('home.team.title')}
             </h2>
             <p className="text-muted-foreground text-lg">
-              Profissionais experientes dedicados ao sucesso dos nossos investimentos
+              {t('home.team.subtitle')}
             </p>
           </div>
           <TestimonialSlider reviews={testimonials} />
@@ -346,23 +346,23 @@ const Home = () => {
         <Marquee className="[--duration:30s]" pauseOnHover>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">R$ 500M+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">em Ativos</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.assets')}</span>
           </div>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">10+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">Empresas Parceiras</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.partners')}</span>
           </div>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">5</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">Segmentos</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.segments')}</span>
           </div>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">15+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">Anos de Experiência</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.experience')}</span>
           </div>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">98%</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">Taxa de Sucesso</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.success')}</span>
           </div>
         </Marquee>
       </section>
@@ -372,10 +372,10 @@ const Home = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-              Depoimentos
+              {t('home.testimonials.title')}
             </h2>
             <p className="text-muted-foreground text-lg">
-              O que nossos parceiros dizem sobre nós
+              {t('home.testimonials.subtitle')}
             </p>
           </div>
           <Testimonials3D />
@@ -385,9 +385,9 @@ const Home = () => {
       {/* Animated CTA Section */}
       <section className="py-4 bg-background">
         <AnimatedCTASection
-          titles={["solidez", "confiança", "credibilidade", "estabilidade", "longevidade"]}
-          preTitle="Construindo"
-          description="Investimentos estratégicos e parcerias sólidas que geram valor sustentável. Nossa missão é identificar oportunidades e potencializar empresas com visão de longo prazo."
+          titles={[t('cta.words.solidity'), t('cta.words.trust'), t('cta.words.credibility'), t('cta.words.stability'), t('cta.words.longevity')]}
+          preTitle={t('cta.building')}
+          description={t('cta.description')}
         />
       </section>
 

@@ -25,7 +25,7 @@ const translations: Translations = {
   // Home sections
   'home.positioning.title': { pt: 'Uma Holding Focada em Resultados', en: 'A Results-Driven Holding' },
   'home.positioning.text': { pt: 'Atuamos como estrutura central de governança e estratégia, unindo empresas de diferentes segmentos sob uma visão comum de excelência, crescimento sustentável e geração de valor para todos os stakeholders.', en: 'We operate as a central governance and strategy structure, uniting companies from different segments under a common vision of excellence, sustainable growth, and value creation for all stakeholders.' },
-  
+
   'home.highlights.segments': { pt: 'Segmentos de Atuação', en: 'Business Segments' },
   'home.highlights.segments.desc': { pt: 'Diversificação estratégica em setores de alto potencial', en: 'Strategic diversification in high-potential sectors' },
   'home.highlights.partners': { pt: 'Empresas Parceiras', en: 'Partner Companies' },
@@ -63,6 +63,132 @@ const translations: Translations = {
   // Footer
   'footer.rights': { pt: 'Todos os direitos reservados.', en: 'All rights reserved.' },
   'footer.tagline': { pt: 'Construindo valor de longo prazo.', en: 'Building long-term value.' },
+  'footer.legal': { pt: 'Todos os direitos da TBPAR Holding reservados. As marcas, logotipos e direitos autorais das empresas parceiras pertencem aos seus respectivos proprietários. O uso de qualquer marca registrada não implica endosso por parte da TBPAR. Informações sujeitas a alterações sem aviso prévio.', en: 'All rights of TBPAR Holding reserved. Brands, logos and copyrights of partner companies belong to their respective owners. Use of any trademark does not imply endorsement by TBPAR. Information subject to change without notice.' },
+
+  // Home - New sections
+  'home.logocloud.title': { pt: 'Empresas de Excelência', en: 'Excellence Companies' },
+  'home.map.title': { pt: 'Presença Global', en: 'Global Presence' },
+  'home.map.subtitle': { pt: 'Conectando mercados e criando valor em escala internacional', en: 'Connecting markets and creating value on an international scale' },
+  'home.team.title': { pt: 'Nossa Equipe', en: 'Our Team' },
+  'home.team.subtitle': { pt: 'Profissionais experientes dedicados ao sucesso dos nossos investimentos', en: 'Experienced professionals dedicated to the success of our investments' },
+  'home.testimonials.title': { pt: 'Depoimentos', en: 'Testimonials' },
+  'home.testimonials.subtitle': { pt: 'O que nossos parceiros dizem sobre nós', en: 'What our partners say about us' },
+
+  // Newsletter
+  'newsletter.title': { pt: 'Receba Nossas Atualizações', en: 'Receive Our Updates' },
+  'newsletter.subtitle': { pt: 'Fique por dentro de novos investimentos e insights estratégicos', en: 'Stay informed about new investments and strategic insights' },
+  'newsletter.button': { pt: 'Inscrever', en: 'Subscribe' },
+  'newsletter.success': { pt: 'Inscrição realizada!', en: 'Subscription successful!' },
+  'newsletter.success.desc': { pt: 'Você receberá nossas atualizações em breve.', en: 'You will receive our updates soon.' },
+
+  // CTA Section
+  'cta.building': { pt: 'Construindo', en: 'Building' },
+  'cta.words.solidity': { pt: 'solidez', en: 'solidity' },
+  'cta.words.trust': { pt: 'confiança', en: 'trust' },
+  'cta.words.credibility': { pt: 'credibilidade', en: 'credibility' },
+  'cta.words.stability': { pt: 'estabilidade', en: 'stability' },
+  'cta.words.longevity': { pt: 'longevidade', en: 'longevity' },
+  'cta.description': { pt: 'Investimentos estratégicos e parcerias sólidas que geram valor sustentável. Nossa missão é identificar oportunidades e potencializar empresas com visão de longo prazo.', en: 'Strategic investments and solid partnerships that generate sustainable value. Our mission is to identify opportunities and empower companies with long-term vision.' },
+
+  // About - Storytelling
+  'about.story.chapter1': { pt: 'Fundada com a missão de criar valor duradouro através de investimentos estratégicos.', en: 'Founded with the mission to create lasting value through strategic investments.' },
+  'about.story.chapter1.title': { pt: 'Capítulo 1', en: 'Chapter 1' },
+  'about.story.chapter1.period': { pt: '2009 - Os Primeiros Passos', en: '2009 - The First Steps' },
+  'about.story.chapter1.company': { pt: 'Origem', en: 'Origin' },
+
+  'about.story.chapter2': { pt: 'Crescemos construindo parcerias sólidas e expandindo para novos segmentos com visão de longo prazo.', en: 'We grew by building solid partnerships and expanding into new segments with long-term vision.' },
+  'about.story.chapter2.title': { pt: 'Capítulo 2', en: 'Chapter 2' },
+  'about.story.chapter2.period': { pt: '2015 - Expansão Estratégica', en: '2015 - Strategic Expansion' },
+  'about.story.chapter2.company': { pt: 'Crescimento', en: 'Growth' },
+
+  'about.story.chapter3': { pt: 'Hoje somos referência em governança, gestão de portfólio e geração de valor sustentável.', en: 'Today we are a reference in governance, portfolio management and sustainable value creation.' },
+  'about.story.chapter3.title': { pt: 'Capítulo 3', en: 'Chapter 3' },
+  'about.story.chapter3.period': { pt: '2025 - Consolidação', en: '2025 - Consolidation' },
+  'about.story.chapter3.company': { pt: 'Presente', en: 'Present' },
+
+  'about.pillars.title': { pt: 'Nossos Pilares', en: 'Our Pillars' },
+  'about.pillars.subtitle': { pt: 'Os valores que guiam cada decisão estratégica', en: 'The values that guide every strategic decision' },
+  'about.pillars.governance': { pt: 'Governança', en: 'Governance' },
+  'about.pillars.governance.desc': { pt: 'Estruturas claras de decisão, gestão de riscos e prestação de contas transparente.', en: 'Clear decision-making structures, risk management, and transparent accountability.' },
+  'about.pillars.excellence': { pt: 'Excelência', en: 'Excellence' },
+  'about.pillars.excellence.desc': { pt: 'Busca contínua por resultados superiores e melhores práticas de mercado.', en: 'Continuous pursuit of superior results and market best practices.' },
+  'about.pillars.partnerships': { pt: 'Parcerias', en: 'Partnerships' },
+  'about.pillars.partnerships.desc': { pt: 'Relacionamentos duradouros baseados em confiança e crescimento mútuo.', en: 'Lasting relationships based on trust and mutual growth.' },
+  'about.pillars.vision': { pt: 'Visão', en: 'Vision' },
+  'about.pillars.vision.desc': { pt: 'Planejamento estratégico de longo prazo alinhado com tendências globais.', en: 'Long-term strategic planning aligned with global trends.' },
+
+  'about.metrics.transparency': { pt: 'Transparência', en: 'Transparency' },
+  'about.metrics.compliance': { pt: 'Compliance', en: 'Compliance' },
+  'about.metrics.certification': { pt: 'Certificação', en: 'Certification' },
+
+  // Segments
+  'segments.data.title': { pt: 'Decisões Baseadas em Dados', en: 'Data-Driven Decisions' },
+  'segments.data.description': { pt: 'Analisamos métricas detalhadas mensalmente em cada segmento de atuação. Nossas decisões estratégicas são fundamentadas em dados concretos, garantindo resultados consistentes e crescimento sustentável para todos os stakeholders.', en: 'We analyze detailed metrics monthly in each business segment. Our strategic decisions are based on concrete data, ensuring consistent results and sustainable growth for all stakeholders.' },
+  'segments.data.monthly': { pt: 'Mensal', en: 'Monthly' },
+  'segments.data.monthly.desc': { pt: 'Análise de Performance', en: 'Performance Analysis' },
+  'segments.data.kpis': { pt: 'KPIs Monitorados', en: 'Monitored KPIs' },
+  'segments.data.monitoring': { pt: 'Monitoramento Contínuo', en: 'Continuous Monitoring' },
+
+  // Marquee Stats
+  'stats.assets': { pt: 'em Ativos', en: 'in Assets' },
+  'stats.partners': { pt: 'Empresas Parceiras', en: 'Partner Companies' },
+  'stats.segments': { pt: 'Segmentos', en: 'Segments' },
+  'stats.experience': { pt: 'Anos de Experiência', en: 'Years of Experience' },
+  'stats.success': { pt: 'Taxa de Sucesso', en: 'Success Rate' },
+
+  // Contact
+  'contact.available': { pt: 'Disponível para novas parcerias', en: 'Available for new partnerships' },
+  'contact.work.title1': { pt: 'Vamos trabalhar', en: 'Let\'s work' },
+  'contact.work.title2': { pt: 'juntos', en: 'together' },
+  'contact.work.perfect': { pt: 'Perfeito', en: 'Perfect' },
+  'contact.work.talk': { pt: 'Vamos conversar', en: 'Let\'s talk' },
+  'contact.work.email': { pt: 'Enviar E-mail', en: 'Send Email' },
+  'contact.work.description': { pt: 'Tem um projeto em mente? Adoraríamos ouvir sobre ele. Vamos criar algo excepcional juntos.', en: 'Have a project in mind? We\'d love to hear about it. Let\'s create something exceptional together.' },
+
+  // Common
+  'common.learnmore': { pt: 'Saiba mais', en: 'Learn more' },
+
+  // Team Member - Thomas Beck
+  'team.thomas.name': { pt: 'Thomas Beck', en: 'Thomas Beck' },
+  'team.thomas.role': { pt: 'CEO & Fundador', en: 'CEO & Founder' },
+  'team.thomas.quote': { pt: 'Criar algo inspirador, passando segurança.', en: 'Creating something inspiring, providing security.' },
+
+  // Testimonials 3D
+  'testimonial.carlos.name': { pt: 'Carlos Silva', en: 'Carlos Silva' },
+  'testimonial.carlos.role': { pt: 'CEO, TechCorp', en: 'CEO, TechCorp' },
+  'testimonial.carlos.quote': { pt: 'Parceria estratégica que transformou nossos resultados!', en: 'Strategic partnership that transformed our results!' },
+
+  'testimonial.ana.name': { pt: 'Ana Rodrigues', en: 'Ana Rodrigues' },
+  'testimonial.ana.role': { pt: 'Diretora Financeira, InvestCo', en: 'CFO, InvestCo' },
+  'testimonial.ana.quote': { pt: 'Governança exemplar e visão de longo prazo.', en: 'Exemplary governance and long-term vision.' },
+
+  'testimonial.roberto.name': { pt: 'Roberto Mendes', en: 'Roberto Mendes' },
+  'testimonial.roberto.role': { pt: 'Fundador, StartupHub', en: 'Founder, StartupHub' },
+  'testimonial.roberto.quote': { pt: 'Profissionalismo e transparência em cada etapa.', en: 'Professionalism and transparency at every stage.' },
+
+  'testimonial.marina.name': { pt: 'Marina Costa', en: 'Marina Costa' },
+  'testimonial.marina.role': { pt: 'VP Operações, GlobalTrade', en: 'VP Operations, GlobalTrade' },
+  'testimonial.marina.quote': { pt: 'Excelência operacional que gera valor consistente.', en: 'Operational excellence that generates consistent value.' },
+
+  'testimonial.paulo.name': { pt: 'Paulo Santos', en: 'Paulo Santos' },
+  'testimonial.paulo.role': { pt: 'CEO, TechSolutions', en: 'CEO, TechSolutions' },
+  'testimonial.paulo.quote': { pt: 'Investimento que superou todas as expectativas!', en: 'Investment that exceeded all expectations!' },
+
+  'testimonial.julia.name': { pt: 'Julia Martins', en: 'Julia Martins' },
+  'testimonial.julia.role': { pt: 'Diretora, FinanceGroup', en: 'Director, FinanceGroup' },
+  'testimonial.julia.quote': { pt: 'Equipe dedicada ao sucesso dos parceiros.', en: 'Team dedicated to partner success.' },
+
+  'testimonial.fernando.name': { pt: 'Fernando Lima', en: 'Fernando Lima' },
+  'testimonial.fernando.role': { pt: 'Fundador, BusinessCorp', en: 'Founder, BusinessCorp' },
+  'testimonial.fernando.quote': { pt: 'Resultados impressionantes em poucos meses!', en: 'Impressive results in just a few months!' },
+
+  'testimonial.beatriz.name': { pt: 'Beatriz Alves', en: 'Beatriz Alves' },
+  'testimonial.beatriz.role': { pt: 'CEO, EnterpriseHub', en: 'CEO, EnterpriseHub' },
+  'testimonial.beatriz.quote': { pt: 'Governança sólida e processos transparentes.', en: 'Solid governance and transparent processes.' },
+
+  'testimonial.ricardo.name': { pt: 'Ricardo Souza', en: 'Ricardo Souza' },
+  'testimonial.ricardo.role': { pt: 'Presidente, InvestGroup', en: 'President, InvestGroup' },
+  'testimonial.ricardo.quote': { pt: 'Holding de referência no mercado brasileiro.', en: 'Reference holding company in the Brazilian market.' },
 };
 
 interface LanguageContextType {

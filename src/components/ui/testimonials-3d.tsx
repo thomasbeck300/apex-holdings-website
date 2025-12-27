@@ -1,73 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Marquee } from '@/components/ui/marquee';
-
-// Testimonials data
-const testimonials = [
-    {
-        name: 'Carlos Silva',
-        username: '@carlos',
-        body: 'Parceria estratégica que transformou nossos resultados!',
-        img: 'https://randomuser.me/api/portraits/men/32.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Ana Rodrigues',
-        username: '@ana',
-        body: 'Governança exemplar e visão de longo prazo.',
-        img: 'https://randomuser.me/api/portraits/women/68.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Roberto Mendes',
-        username: '@roberto',
-        body: 'Profissionalismo e transparência em cada etapa.',
-        img: 'https://randomuser.me/api/portraits/men/51.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Marina Costa',
-        username: '@marina',
-        body: 'Excelência operacional que gera valor consistente.',
-        img: 'https://randomuser.me/api/portraits/women/53.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Paulo Santos',
-        username: '@paulo',
-        body: 'Investimento que superou todas as expectativas!',
-        img: 'https://randomuser.me/api/portraits/men/33.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Julia Martins',
-        username: '@julia',
-        body: 'Equipe dedicada ao sucesso dos parceiros.',
-        img: 'https://randomuser.me/api/portraits/women/22.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Fernando Lima',
-        username: '@fernando',
-        body: 'Resultados impressionantes em poucos meses!',
-        img: 'https://randomuser.me/api/portraits/men/85.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Beatriz Alves',
-        username: '@beatriz',
-        body: 'Governança sólida e processos transparentes.',
-        img: 'https://randomuser.me/api/portraits/women/45.jpg',
-        country: '🇧🇷 Brasil',
-    },
-    {
-        name: 'Ricardo Souza',
-        username: '@ricardo',
-        body: 'Holding de referência no mercado brasileiro.',
-        img: 'https://randomuser.me/api/portraits/men/61.jpg',
-        country: '🇧🇷 Brasil',
-    },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 function TestimonialCard({ img, name, username, body, country }: (typeof testimonials)[number]) {
     return (
@@ -92,7 +26,76 @@ function TestimonialCard({ img, name, username, body, country }: (typeof testimo
 }
 
 export function Testimonials3D() {
-    return (
+  const { t } = useLanguage();
+  
+  // Testimonials data with translations
+  const testimonials = [
+    {
+      name: t('testimonial.carlos.name'),
+      username: '@carlos',
+      body: t('testimonial.carlos.quote'),
+      img: 'https://randomuser.me/api/portraits/men/32.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.ana.name'),
+      username: '@ana',
+      body: t('testimonial.ana.quote'),
+      img: 'https://randomuser.me/api/portraits/women/68.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.roberto.name'),
+      username: '@roberto',
+      body: t('testimonial.roberto.quote'),
+      img: 'https://randomuser.me/api/portraits/men/51.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.marina.name'),
+      username: '@marina',
+      body: t('testimonial.marina.quote'),
+      img: 'https://randomuser.me/api/portraits/women/53.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.paulo.name'),
+      username: '@paulo',
+      body: t('testimonial.paulo.quote'),
+      img: 'https://randomuser.me/api/portraits/men/33.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.julia.name'),
+      username: '@julia',
+      body: t('testimonial.julia.quote'),
+      img: 'https://randomuser.me/api/portraits/women/22.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.fernando.name'),
+      username: '@fernando',
+      body: t('testimonial.fernando.quote'),
+      img: 'https://randomuser.me/api/portraits/men/85.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.beatriz.name'),
+      username: '@beatriz',
+      body: t('testimonial.beatriz.quote'),
+      img: 'https://randomuser.me/api/portraits/women/45.jpg',
+      country: '🇧🇷 Brasil',
+    },
+    {
+      name: t('testimonial.ricardo.name'),
+      username: '@ricardo',
+      body: t('testimonial.ricardo.quote'),
+      img: 'https://randomuser.me/api/portraits/men/61.jpg',
+      country: '🇧🇷 Brasil',
+    },
+  ];
+  
+  return (
         <div className="rounded-lg relative flex h-[500px] w-full max-w-[900px] mx-auto flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px]">
             <div
                 className="flex flex-row items-center gap-4"

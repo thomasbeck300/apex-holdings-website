@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { GlassButton } from "@/components/ui/glass-button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AnimatedCTASectionProps {
     titles: string[];
@@ -13,13 +14,14 @@ interface AnimatedCTASectionProps {
 
 export function AnimatedCTASection({
     titles,
-    preTitle = "Construindo",
+    preTitle,
     description,
 }: AnimatedCTASectionProps) {
     const [titleNumber, setTitleNumber] = useState(0);
     const [email, setEmail] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { toast } = useToast();
+    const { t } = useLanguage();
 
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -39,8 +41,8 @@ export function AnimatedCTASection({
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         toast({
-            title: "Inscrição realizada!",
-            description: "Você receberá nossas atualizações em breve.",
+            title: t('newsletter.success'),
+            description: t('newsletter.success.desc'),
         });
 
         setEmail("");
@@ -99,14 +101,14 @@ export function AnimatedCTASection({
 
                             <div className="relative z-10 space-y-3 text-center">
                                 <h3 className="text-2xl font-light tracking-tight text-foreground">
-                                    Receba Nossas Atualizações
+                                    {t('newsletter.title')}
                                 </h3>
                                 <p className="text-sm text-muted-foreground leading-relaxed">
-                                    Fique por dentro de novos investimentos e insights estratégicos
+                                    {t('newsletter.subtitle')}
                                 </p>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="relative z-10 flex flex-col sm:flex-row gap-3">
+                            <form onSubmit={handleSubmit} className="relative z-10 flex flex-col sm:flex-row gap-3 items-center">
                                 <Input
                                     type="email"
                                     placeholder="seu@email.com"
@@ -115,21 +117,21 @@ export function AnimatedCTASection({
                                     required
                                     className="flex-1 bg-background/50 border-border/50 focus:border-foreground/50 h-12 rounded-lg backdrop-blur-sm"
                                 />
-                                <Button
+                                <GlassButton
                                     type="submit"
                                     disabled={isSubmitting}
-                                    size="lg"
-                                    className="gap-2 h-12 px-6"
+                                    size="default"
+                                    contentClassName="flex items-center gap-2"
                                 >
                                     {isSubmitting ? (
                                         <span className="animate-pulse">...</span>
                                     ) : (
                                         <>
-                                            Inscrever
+                                            {t('newsletter.button')}
                                             <ArrowRight className="w-4 h-4" />
                                         </>
                                     )}
-                                </Button>
+                                </GlassButton>
                             </form>
                         </div>
                     </div>

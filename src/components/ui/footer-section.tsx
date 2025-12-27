@@ -22,10 +22,7 @@ export function FooterSection() {
 						© {currentYear} TBPAR Holding. {t('footer.rights')}
 					</p>
 					<p className="text-muted-foreground/50 text-xs max-w-2xl leading-relaxed">
-						Todos os direitos da TBPAR Holding reservados. As marcas, logotipos e direitos autorais
-						das empresas parceiras pertencem aos seus respectivos proprietários. O uso de qualquer
-						marca registrada não implica endosso por parte da TBPAR. Informações sujeitas a alterações
-						sem aviso prévio.
+						{t('footer.legal')}
 					</p>
 				</AnimatedContainer>
 

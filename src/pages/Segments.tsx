@@ -110,12 +110,10 @@ const Segments = () => {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-                Decisões Baseadas em Dados
+                {t('segments.data.title')}
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto">
-                Analisamos métricas detalhadas mensalmente em cada segmento de atuação.
-                Nossas decisões estratégicas são fundamentadas em dados concretos,
-                garantindo resultados consistentes e crescimento sustentável para todos os stakeholders.
+                {t('segments.data.description')}
               </p>
             </div>
 
@@ -123,16 +121,16 @@ const Segments = () => {
 
             <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
               <div>
-                <div className="text-2xl font-light text-foreground mb-2">Mensal</div>
-                <p className="text-sm text-muted-foreground">Análise de Performance</p>
+                <div className="text-2xl font-light text-foreground mb-2">{t('segments.data.monthly')}</div>
+                <p className="text-sm text-muted-foreground">{t('segments.data.monthly.desc')}</p>
               </div>
               <div>
                 <div className="text-2xl font-light text-foreground mb-2">100+</div>
-                <p className="text-sm text-muted-foreground">KPIs Monitorados</p>
+                <p className="text-sm text-muted-foreground">{t('segments.data.kpis')}</p>
               </div>
               <div>
                 <div className="text-2xl font-light text-foreground mb-2">24/7</div>
-                <p className="text-sm text-muted-foreground">Monitoramento Contínuo</p>
+                <p className="text-sm text-muted-foreground">{t('segments.data.monitoring')}</p>
               </div>
             </div>
           </div>

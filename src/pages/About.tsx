@@ -11,45 +11,45 @@ const About = () => {
   // Storytelling da holding em 3 capítulos
   const storyChapters = [
     {
-      quote: "Fundada com a missão de criar valor duradouro através de investimentos estratégicos.",
-      author: "Capítulo 1",
-      role: "2009 - Os Primeiros Passos",
-      company: "Origem",
+      quote: t('about.story.chapter1'),
+      author: t('about.story.chapter1.title'),
+      role: t('about.story.chapter1.period'),
+      company: t('about.story.chapter1.company'),
     },
     {
-      quote: "Crescemos construindo parcerias sólidas e expandindo para novos segmentos com visão de longo prazo.",
-      author: "Capítulo 2",
-      role: "2015 - Expansão Estratégica",
-      company: "Crescimento",
+      quote: t('about.story.chapter2'),
+      author: t('about.story.chapter2.title'),
+      role: t('about.story.chapter2.period'),
+      company: t('about.story.chapter2.company'),
     },
     {
-      quote: "Hoje somos referência em governança, gestão de portfólio e geração de valor sustentável.",
-      author: "Capítulo 3",
-      role: "2025 - Consolidação",
-      company: "Presente",
+      quote: t('about.story.chapter3'),
+      author: t('about.story.chapter3.title'),
+      role: t('about.story.chapter3.period'),
+      company: t('about.story.chapter3.company'),
     },
   ];
 
   const values = [
     {
       icon: Building2,
-      title: 'Governança',
-      description: 'Estruturas claras de decisão, gestão de riscos e prestação de contas transparente.',
+      title: t('about.pillars.governance'),
+      description: t('about.pillars.governance.desc'),
     },
     {
       icon: TrendingUp,
-      title: 'Excelência',
-      description: 'Busca contínua por resultados superiores e melhores práticas de mercado.',
+      title: t('about.pillars.excellence'),
+      description: t('about.pillars.excellence.desc'),
     },
     {
       icon: Users,
-      title: 'Parcerias',
-      description: 'Relacionamentos duradouros baseados em confiança e crescimento mútuo.',
+      title: t('about.pillars.partnerships'),
+      description: t('about.pillars.partnerships.desc'),
     },
     {
       icon: Target,
-      title: 'Visão',
-      description: 'Planejamento estratégico de longo prazo alinhado com tendências globais.',
+      title: t('about.pillars.vision'),
+      description: t('about.pillars.vision.desc'),
     },
   ];
 
@@ -89,10 +89,10 @@ const About = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-              Nossos Pilares
+              {t('about.pillars.title')}
             </h2>
             <p className="text-muted-foreground text-lg">
-              Os valores que guiam cada decisão estratégica
+              {t('about.pillars.subtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
