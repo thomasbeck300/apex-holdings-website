@@ -14,6 +14,7 @@ import { AnimatedCTASection } from '@/components/ui/animated-cta-section';
 import { Marquee } from '@/components/ui/marquee';
 import { Testimonials3D } from '@/components/ui/testimonials-3d';
 import KineticScrollGallery from '@/components/ui/kinetic-scroll-gallery';
+import { ThreeDPhotoCarousel } from '@/components/ui/3d-carousel';
 import { GlassButton } from '@/components/ui/glass-button';
 import { cn } from '@/lib/utils';
 
@@ -399,6 +400,18 @@ const Home = () => {
             </h2>
           </div>
           <KineticScrollGallery images={galleryImages} />
+        </div>
+      </section>
+
+      {/* 3D Carousel - Mobile Only */}
+      <section className="lg:hidden pt-8 pb-6 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-light tracking-tight text-foreground">
+              {t('gallery.title')}
+            </h2>
+          </div>
+          <ThreeDPhotoCarousel images={galleryImages} />
         </div>
       </section>
     </Layout>
