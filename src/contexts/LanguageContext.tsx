@@ -19,7 +19,7 @@ const translations: Translations = {
 
   // Hero
   'hero.title': { pt: 'Construindo Valor de Longo Prazo', en: 'Building Long-Term Value' },
-  'hero.subtitle': { pt: 'Investimentos estratégicos e parcerias sólidas em múltiplos segmentos de atuação.', en: 'Strategic investments and solid partnerships across multiple business segments.' },
+  'hero.subtitle': { pt: 'Investimentos estratégicos e parcerias sólidas em múltiplos segmentos.', en: 'Strategic investments and solid partnerships across multiple segments.' },
   'hero.cta': { pt: 'Entre em Contato', en: 'Get in Touch' },
 
   // Home sections
