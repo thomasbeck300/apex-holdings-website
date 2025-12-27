@@ -1,135 +1,162 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
+import { useScroll } from '@/hooks/use-scroll';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
-  const location = useLocation();
+	const [open, setOpen] = React.useState(false);
+	const scrolled = useScroll(10);
+	const { language, setLanguage, t } = useLanguage();
+	const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+	const navLinks = [
+		{ href: '/', label: t('nav.home') },
+		{ href: '/about', label: t('nav.about') },
+		{ href: '/partners', label: t('nav.partners') },
+		{ href: '/segments', label: t('nav.segments') },
+		{ href: '/contact', label: t('nav.contact') },
+	];
 
-  const navLinks = [
-    { href: '/', label: t('nav.home') },
-    { href: '/about', label: t('nav.about') },
-    { href: '/partners', label: t('nav.partners') },
-    { href: '/segments', label: t('nav.segments') },
-    { href: '/contact', label: t('nav.contact') },
-  ];
+	const isActive = (path: string) => location.pathname === path;
 
-  const isActive = (path: string) => location.pathname === path;
+	React.useEffect(() => {
+		if (open) {
+			// Disable scroll
+			document.body.style.overflow = 'hidden';
+		} else {
+			// Re-enable scroll
+			document.body.style.overflow = '';
+		}
 
-  return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
-      )}
-    >
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <span className="text-lg font-semibold tracking-wider uppercase text-foreground">
-              Holding Group
-            </span>
-          </Link>
+		// Cleanup when component unmounts
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [open]);
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={cn(
-                  'text-sm tracking-wide transition-colors duration-300 link-underline',
-                  isActive(link.href)
-                    ? 'text-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+	return (
+		<header
+			className={cn(
+				'sticky top-0 z-50 mx-auto w-full max-w-7xl border-b border-transparent md:rounded-md md:border md:transition-all md:ease-out',
+				{
+					'bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg md:top-4 md:max-w-6xl md:shadow':
+						scrolled && !open,
+					'bg-background/90': open,
+				},
+			)}
+		>
+			<nav
+				className={cn(
+					'flex h-16 w-full items-center justify-between px-6 md:h-14 md:transition-all md:ease-out',
+					{
+						'md:px-4': scrolled,
+					},
+				)}
+			>
+				<Link to="/" className="flex items-center">
+					<img
+						src="/imgs/logo-tbpar.webp"
+						alt="TBPAR"
+						className="w-auto"
+						style={{ height: '60px' }}
+					/>
+				</Link>
 
-          {/* Language Switcher & Mobile Menu */}
-          <div className="flex items-center gap-6">
-            {/* Language Switcher */}
-            <div className="flex items-center gap-1 text-sm">
-              <button
-                onClick={() => setLanguage('pt')}
-                className={cn(
-                  'px-2 py-1 transition-colors duration-300',
-                  language === 'pt'
-                    ? 'text-foreground font-medium'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                PT
-              </button>
-              <span className="text-muted-foreground">|</span>
-              <button
-                onClick={() => setLanguage('en')}
-                className={cn(
-                  'px-2 py-1 transition-colors duration-300',
-                  language === 'en'
-                    ? 'text-foreground font-medium'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-              >
-                EN
-              </button>
-            </div>
+				<div className="hidden items-center gap-1 md:flex">
+					{navLinks.map((link) => (
+						<Link
+							key={link.href}
+							className={buttonVariants({
+								variant: isActive(link.href) ? 'default' : 'ghost',
+								className: 'text-sm',
+							})}
+							to={link.href}
+						>
+							{link.label}
+						</Link>
+					))}
+					<div className="ml-2 flex items-center gap-1 border-l border-border pl-2">
+						<Button
+							size="sm"
+							variant={language === 'pt' ? 'default' : 'ghost'}
+							onClick={() => setLanguage('pt')}
+							className="h-8 px-2 text-xs"
+						>
+							PT
+						</Button>
+						<Button
+							size="sm"
+							variant={language === 'en' ? 'default' : 'ghost'}
+							onClick={() => setLanguage('en')}
+							className="h-8 px-2 text-xs"
+						>
+							EN
+						</Button>
+					</div>
+				</div>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-foreground"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
+				<Button size="icon" variant="outline" onClick={() => setOpen(!open)} className="md:hidden">
+					<MenuToggleIcon open={open} className="size-5" duration={300} />
+				</Button>
+			</nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={cn(
-          'lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden',
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        )}
-      >
-        <nav className="container mx-auto px-6 py-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={cn(
-                'text-base py-2 transition-colors duration-300',
-                isActive(link.href)
-                  ? 'text-foreground font-medium'
-                  : 'text-muted-foreground'
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-    </header>
-  );
+			<div
+				className={cn(
+					'bg-background/90 fixed top-16 right-0 bottom-0 left-0 z-50 flex flex-col overflow-hidden border-y md:hidden',
+					open ? 'block' : 'hidden',
+				)}
+			>
+				<div
+					data-slot={open ? 'open' : 'closed'}
+					className={cn(
+						'data-[slot=open]:animate-in data-[slot=open]:zoom-in-95 data-[slot=closed]:animate-out data-[slot=closed]:zoom-out-95 ease-out',
+						'flex h-full w-full flex-col justify-between gap-y-4 p-6',
+					)}
+				>
+					<div className="grid gap-y-2">
+						{navLinks.map((link) => (
+							<Link
+								key={link.href}
+								className={buttonVariants({
+									variant: isActive(link.href) ? 'default' : 'ghost',
+									className: 'justify-start',
+								})}
+								to={link.href}
+								onClick={() => setOpen(false)}
+							>
+								{link.label}
+							</Link>
+						))}
+					</div>
+					<div className="flex flex-col gap-2 border-t border-border pt-4">
+						<div className="flex gap-2">
+							<Button
+								variant={language === 'pt' ? 'default' : 'outline'}
+								className="w-full"
+								onClick={() => {
+									setLanguage('pt');
+									setOpen(false);
+								}}
+							>
+								Português
+							</Button>
+							<Button
+								variant={language === 'en' ? 'default' : 'outline'}
+								className="w-full"
+								onClick={() => {
+									setLanguage('en');
+									setOpen(false);
+								}}
+							>
+								English
+							</Button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+	);
 }

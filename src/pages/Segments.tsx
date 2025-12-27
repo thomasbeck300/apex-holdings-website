@@ -1,6 +1,8 @@
 import { Building2, TrendingUp, Heart, Leaf, Truck, Cpu } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
+import { BentoGrid, type BentoItem } from '@/components/ui/bento-grid';
+import { AnimatedChart } from '@/components/ui/animated-chart';
 
 interface Segment {
   icon: typeof Building2;
@@ -68,6 +70,18 @@ const segments: Segment[] = [
 const Segments = () => {
   const { language, t } = useLanguage();
 
+  // Convert segments to BentoItem format
+  const bentoItems: BentoItem[] = segments.map((segment, index) => ({
+    title: segment.title[language],
+    description: segment.description[language],
+    icon: <segment.icon className="w-4 h-4 text-foreground" />,
+    status: index === 0 ? "Destaque" : undefined,
+    tags: index === 0 ? ["Inovação", "Digital"] : undefined,
+    colSpan: index === 0 ? 2 : 1,
+    hasPersistentHover: index === 0,
+    cta: "Saiba mais →",
+  }));
+
   return (
     <Layout>
       {/* Hero */}
@@ -85,28 +99,42 @@ const Segments = () => {
         </div>
       </section>
 
-      {/* Segments Grid */}
-      <section className="pb-32">
+      {/* Bento Grid */}
+      <section className="pb-20">
+        <BentoGrid items={bentoItems} />
+      </section>
+
+      {/* Data-Driven Section */}
+      <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {segments.map((segment, index) => (
-              <div
-                key={index}
-                className="group p-8 lg:p-12 border border-border hover:border-foreground/20 transition-all duration-500"
-              >
-                <segment.icon
-                  size={36}
-                  className="text-muted-foreground group-hover:text-foreground transition-colors duration-300 mb-8"
-                  strokeWidth={1}
-                />
-                <h3 className="text-xl font-medium text-foreground mb-4 tracking-wide">
-                  {segment.title[language]}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {segment.description[language]}
-                </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
+                Decisões Baseadas em Dados
+              </h2>
+              <p className="text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto">
+                Analisamos métricas detalhadas mensalmente em cada segmento de atuação.
+                Nossas decisões estratégicas são fundamentadas em dados concretos,
+                garantindo resultados consistentes e crescimento sustentável para todos os stakeholders.
+              </p>
+            </div>
+
+            <AnimatedChart />
+
+            <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-2xl font-light text-foreground mb-2">Mensal</div>
+                <p className="text-sm text-muted-foreground">Análise de Performance</p>
               </div>
-            ))}
+              <div>
+                <div className="text-2xl font-light text-foreground mb-2">100+</div>
+                <p className="text-sm text-muted-foreground">KPIs Monitorados</p>
+              </div>
+              <div>
+                <div className="text-2xl font-light text-foreground mb-2">24/7</div>
+                <p className="text-sm text-muted-foreground">Monitoramento Contínuo</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

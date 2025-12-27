@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 interface Partner {
   name: string;
@@ -87,33 +88,48 @@ const Partners = () => {
       {/* Partners Grid */}
       <section className="pb-32">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {partners.map((partner, index) => (
-              <div
-                key={index}
-                className="group p-8 border border-border hover:border-foreground/20 transition-all duration-500 hover-lift"
-              >
-                {/* Logo Placeholder */}
-                <div className="w-16 h-16 bg-secondary flex items-center justify-center mb-6">
-                  <span className="text-2xl font-light text-muted-foreground">
-                    {partner.name.charAt(0)}
-                  </span>
+              <div key={index}>
+                <div className="relative rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-6 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-8 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                    <div className="relative z-10 space-y-4">
+                      {/* Logo Placeholder */}
+                      <div className="w-14 h-14 rounded-lg bg-muted/50 backdrop-blur-sm flex items-center justify-center border border-border/30">
+                        <span className="text-2xl font-light text-foreground">
+                          {partner.name.charAt(0)}
+                        </span>
+                      </div>
+
+                      {/* Segment Tag */}
+                      <span className="inline-block text-xs tracking-wider uppercase text-muted-foreground/70 font-medium">
+                        {partner.segment[language]}
+                      </span>
+
+                      {/* Name */}
+                      <h3 className="text-xl leading-tight font-light tracking-tight text-foreground">
+                        {partner.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {partner.description[language]}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Segment Tag */}
-                <span className="inline-block text-xs tracking-wider uppercase text-muted-foreground mb-4">
-                  {partner.segment[language]}
-                </span>
-
-                {/* Name */}
-                <h3 className="text-lg font-medium text-foreground mb-3 tracking-wide">
-                  {partner.name}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {partner.description[language]}
-                </p>
               </div>
             ))}
           </div>
