@@ -133,10 +133,16 @@ const Home = () => {
     <Layout>
       {/* Hero Section - Modern Design */}
       <section className="relative min-h-screen flex items-end pb-20 pt-32 overflow-hidden bg-background">
-        {/* Background Image */}
+        {/* Background Image - Desktop */}
         <div
-          className="absolute -top-[10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-0"
+          className="hidden md:block absolute -top-[10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-0"
           style={{ backgroundImage: 'url(/imgs/cavalo-bg.webp)' }}
+        />
+        
+        {/* Background Image - Mobile */}
+        <div
+          className="md:hidden absolute -top-[10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-0"
+          style={{ backgroundImage: 'url(/imgs/bg-mobile.webp)' }}
         />
 
         {/* Ethereal Shadow Effect */}
@@ -384,9 +390,14 @@ const Home = () => {
         />
       </section>
 
-      {/* Kinetic Gallery Section */}
-      <section className="pt-2 pb-6 bg-secondary/30">
+      {/* Kinetic Gallery Section - Desktop Only */}
+      <section className="hidden lg:block pt-8 pb-6 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground">
+              {t('gallery.title')}
+            </h2>
+          </div>
           <KineticScrollGallery images={galleryImages} />
         </div>
       </section>

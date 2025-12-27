@@ -145,6 +145,9 @@ const translations: Translations = {
   'contact.work.email': { pt: 'Enviar E-mail', en: 'Send Email' },
   'contact.work.description': { pt: 'Tem um projeto em mente? Adoraríamos ouvir sobre ele. Vamos criar algo excepcional juntos.', en: 'Have a project in mind? We\'d love to hear about it. Let\'s create something exceptional together.' },
 
+  // Gallery
+  'gallery.title': { pt: 'Nossos Projetos', en: 'Our Projects' },
+  
   // Common
   'common.learnmore': { pt: 'Saiba mais', en: 'Learn more' },
 
