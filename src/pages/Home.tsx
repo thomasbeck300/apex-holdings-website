@@ -166,19 +166,13 @@ const Home = () => {
                 {t('hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                <GlassButton
-                  href="/contact"
+                <GlassButton 
+                  href="/contact" 
                   size="lg"
                   contentClassName="flex items-center gap-2.5"
                 >
                   {t('hero.cta')}
                   <ArrowRight className="w-5 h-5" />
-                </GlassButton>
-                <GlassButton
-                  href="/about"
-                  size="lg"
-                >
-                  {t('nav.about')}
                 </GlassButton>
               </div>
             </div>

@@ -100,10 +100,16 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     background-color: #000000 !important;
+    overflow-x: hidden;
   }
-
+  
   #root {
     background-color: #000000;
+    overflow-x: hidden;
+  }
+  
+  html {
+    overflow-x: hidden;
   }
 }
 

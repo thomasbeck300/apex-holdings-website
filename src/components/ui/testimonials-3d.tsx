@@ -96,7 +96,7 @@ export function Testimonials3D() {
   ];
   
   return (
-        <div className="rounded-lg relative flex h-[500px] w-full max-w-[900px] mx-auto flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px]">
+    <div className="rounded-lg relative flex h-[500px] w-full max-w-[900px] mx-auto flex-row items-center justify-center overflow-hidden gap-1.5 [perspective:300px] px-4">
             <div
                 className="flex flex-row items-center gap-4"
                 style={{
