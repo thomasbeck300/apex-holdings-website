@@ -13,10 +13,9 @@ import { TestimonialSlider } from '@/components/ui/testimonial-slider';
 import { AnimatedCTASection } from '@/components/ui/animated-cta-section';
 import { Marquee } from '@/components/ui/marquee';
 import { Testimonials3D } from '@/components/ui/testimonials-3d';
-import InfiniteGallery3D from '@/components/ui/infinite-gallery-3d';
+import KineticScrollGallery from '@/components/ui/kinetic-scroll-gallery';
 import { GlassButton } from '@/components/ui/glass-button';
 import { cn } from '@/lib/utils';
-import { Suspense } from 'react';
 
 const Home = () => {
   const { t } = useLanguage();
@@ -391,20 +390,10 @@ const Home = () => {
         />
       </section>
 
-      {/* 3D Gallery Section */}
+      {/* Kinetic Gallery Section */}
       <section className="pt-2 pb-6 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12">
-          <Suspense fallback={
-            <div className="h-[500px] w-full flex items-center justify-center bg-secondary/50 rounded-lg">
-              <p className="text-muted-foreground">Carregando galeria 3D...</p>
-            </div>
-          }>
-            <InfiniteGallery3D
-              images={galleryImages}
-              className="h-[500px] w-full rounded-lg"
-              visibleCount={12}
-            />
-          </Suspense>
+          <KineticScrollGallery images={galleryImages} />
         </div>
       </section>
     </Layout>
