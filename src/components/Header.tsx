@@ -17,6 +17,7 @@ export function Header() {
 		{ href: '/about', label: t('nav.about') },
 		{ href: '/partners', label: t('nav.partners') },
 		{ href: '/segments', label: t('nav.segments') },
+		{ href: '/acquisition', label: t('nav.acquisition') },
 		{ href: '/contact', label: t('nav.contact') },
 	];
 

@@ -10,6 +10,7 @@ import Partners from "./pages/Partners";
 import PartnerDetail from "./pages/PartnerDetail";
 import Segments from "./pages/Segments";
 import Contact from "./pages/Contact";
+import Acquisition from "./pages/Acquisition";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/partners/:partnerId" element={<PartnerDetail />} />
             <Route path="/segments" element={<Segments />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/acquisition" element={<Acquisition />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -15,6 +15,7 @@ const translations: Translations = {
   'nav.about': { pt: 'Sobre Nós', en: 'About Us' },
   'nav.partners': { pt: 'Empresas Parceiras', en: 'Partner Companies' },
   'nav.segments': { pt: 'Segmentos', en: 'Segments' },
+  'nav.acquisition': { pt: 'Aquisição de Empresas', en: 'Business Acquisition' },
   'nav.contact': { pt: 'Contato', en: 'Contact' },
 
   // Hero
