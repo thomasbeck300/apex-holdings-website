@@ -146,8 +146,8 @@ const Home = () => {
           style={{ backgroundImage: 'url(/imgs/bg-mobile.webp)' }}
         />
 
-        {/* Ethereal Shadow Effect */}
-        <div className="absolute inset-0 z-[1] opacity-80 pointer-events-none">
+        {/* Ethereal Shadow Effect - Hidden on Mobile */}
+        <div className="hidden md:block absolute inset-0 z-[1] opacity-80 pointer-events-none">
           <EtherealShadow
             color="rgba(90, 90, 90, 1)"
             animation={{ scale: 80, speed: 70 }}
