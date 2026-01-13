@@ -45,17 +45,37 @@ const Partners = () => {
                     borderWidth={2}
                   />
                   <div className="relative flex flex-col gap-6 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-8 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Logo background para todos os cards */}
+                    {partner.logo && (
+                      <div className="absolute inset-0 opacity-[0.08] pointer-events-none overflow-hidden rounded-xl">
+                        <img 
+                          src={partner.logo} 
+                          alt=""
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    )}
                     {/* Glass effect overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
                     <div className="relative z-10 space-y-4">
-                      {/* Logo Placeholder */}
-                      <div className="w-14 h-14 rounded-lg bg-muted/50 backdrop-blur-sm flex items-center justify-center border border-border/30 transition-transform duration-300 group-hover:scale-110">
-                        <span className="text-2xl font-light text-foreground">
-                          {partner.name.charAt(0)}
-                        </span>
-                      </div>
+                      {/* Logo */}
+                      {partner.logo ? (
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted/50 backdrop-blur-sm flex items-center justify-center border border-border/30 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                          <img 
+                            src={partner.logo} 
+                            alt={partner.name}
+                            className="w-full h-full object-contain p-3"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted/50 backdrop-blur-sm flex items-center justify-center border border-border/30 transition-transform duration-300 group-hover:scale-110">
+                          <span className="text-3xl font-light text-foreground">
+                            {partner.name.charAt(0)}
+                          </span>
+                        </div>
+                      )}
 
                       {/* Segment Tag */}
                       <span className="inline-block text-xs tracking-wider uppercase text-muted-foreground/70 font-medium">

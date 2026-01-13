@@ -37,6 +37,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'leao-gestao-empresarial',
     slug: 'leao-gestao-empresarial',
     name: 'Leão Gestão Empresarial',
+    logo: '/imgs/logotipos/6.webp',
     description: {
       pt: 'Escritório de gestão empresarial com soluções completas para todos os estados brasileiros.',
       en: 'Business management office with complete solutions for all Brazilian states.',
@@ -48,11 +49,11 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'Leão Gestão Empresarial is a company specialized in business management, offering strategic consulting, process management, financial planning and customized solutions for companies of various sizes. With a national presence, we serve clients in all Brazilian states, providing operational efficiency and sustainable growth through proven methodologies and a highly qualified team.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
-      pt: ['Brasil - Todos os Estados'],
-      en: ['Brazil - All States'],
+      pt: ['Região Sul', 'Região Sudeste', 'Região Centro-Oeste', 'Região Nordeste', 'Região Norte'],
+      en: ['South Region', 'Southeast Region', 'Central-West Region', 'Northeast Region', 'North Region'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
@@ -67,6 +68,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'lge-tec',
     slug: 'lge-tec',
     name: 'LGE Tec',
+    logo: '/imgs/logotipos/9.webp',
     description: {
       pt: 'Desenvolvimento de aplicativos inovadores com tecnologia de ponta para todo o Brasil.',
       en: 'Development of innovative applications with cutting-edge technology throughout Brazil.',
@@ -78,11 +80,11 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'LGE Tec is a technology company specialized in creating and developing high-performance mobile and web applications. We combine intuitive design, robust architecture and the latest technologies to deliver digital solutions that transform businesses. Our multidisciplinary team serves clients throughout the national territory, developing everything from corporate applications to e-commerce platforms and custom systems.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
-      pt: ['Brasil - Todos os Estados'],
-      en: ['Brazil - All States'],
+      pt: ['Região Sul', 'Região Sudeste', 'Região Centro-Oeste', 'Região Nordeste', 'Região Norte'],
+      en: ['South Region', 'Southeast Region', 'Central-West Region', 'Northeast Region', 'North Region'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80',
@@ -97,6 +99,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'imap-marcas-patentes',
     slug: 'imap-marcas-patentes',
     name: 'IMAP Marcas e Patentes',
+    logo: '/imgs/logotipos/4.webp',
     description: {
       pt: 'Registro e proteção de marcas e patentes em todo território nacional.',
       en: 'Trademark and patent registration and protection throughout the national territory.',
@@ -108,11 +111,11 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'IMAP Marcas e Patentes specializes in intellectual property, offering complete services for registration, protection and management of trademarks and patents. With technical and legal expertise, we help companies and entrepreneurs protect their intangible assets, conducting feasibility studies, filing with INPI, procedural monitoring and defense strategies. We operate in all Brazilian states, ensuring legal security and protection of your brand identity.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
-      pt: ['Brasil - Todos os Estados'],
-      en: ['Brazil - All States'],
+      pt: ['Região Sul', 'Região Sudeste', 'Região Centro-Oeste', 'Região Nordeste', 'Região Norte'],
+      en: ['South Region', 'Southeast Region', 'Central-West Region', 'Northeast Region', 'North Region'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80',
@@ -127,6 +130,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'seven-marketing',
     slug: 'seven-marketing',
     name: 'Seven – Gestora de Marketing',
+    logo: '/imgs/logotipos/8.webp',
     description: {
       pt: 'Gestão estratégica de marketing com resultados comprovados em todo o Brasil.',
       en: 'Strategic marketing management with proven results throughout Brazil.',
@@ -138,11 +142,11 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'Seven is a marketing management company specialized in digital strategies, branding and performance. We develop integrated campaigns that connect brands to their target audience, using data and creativity to generate measurable results. Our expertise includes digital marketing, social media management, paid media, SEO, inbound marketing and strategic consulting. We serve clients from various segments throughout the national territory, driving growth and brand strengthening.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
-      pt: ['Brasil - Todos os Estados'],
-      en: ['Brazil - All States'],
+      pt: ['Região Sul', 'Região Sudeste', 'Região Centro-Oeste', 'Região Nordeste', 'Região Norte'],
+      en: ['South Region', 'Southeast Region', 'Central-West Region', 'Northeast Region', 'North Region'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80',
@@ -157,6 +161,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'mt-concept',
     slug: 'mt-concept',
     name: 'MT Concept',
+    logo: '/imgs/logotipos/10.webp',
     description: {
       pt: 'Construtora e incorporadora de alto padrão nos estados do Rio Grande do Sul e Santa Catarina.',
       en: 'High-standard construction and real estate developer in Rio Grande do Sul and Santa Catarina states.',
@@ -168,7 +173,7 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'MT Concept is a construction and real estate developer renowned for its high-standard developments and innovative design. We operate in the development of residential and commercial projects that combine contemporary architecture, sustainable technology and premium finishes. With a strong presence in the states of Rio Grande do Sul and Santa Catarina, we deliver developments that value quality of life, privileged location and construction excellence, establishing ourselves as a reference in the real estate market in the South region.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
       pt: ['Rio Grande do Sul', 'Santa Catarina', 'Porto Alegre', 'Florianópolis', 'Balneário Camboriú'],
@@ -187,6 +192,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'tbpar-empreendimentos',
     slug: 'tbpar-empreendimentos',
     name: 'TBPAR Empreendimentos',
+    logo: '/imgs/logotipos/2.webp',
     description: {
       pt: 'Desenvolvimento imobiliário de excelência com foco em lançamentos e vendas estratégicas.',
       en: 'Excellence in real estate development focused on strategic launches and sales.',
@@ -198,7 +204,7 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'TBPAR Empreendimentos operates in the development of premium real estate projects, focusing on high value-added residential and commercial developments. Our expertise ranges from project conception, feasibility analysis, construction to commercialization and delivery. We offer exclusive launches, personalized sales follow-up and complete management of the real estate cycle. With high construction standards and contemporary design, we create spaces that combine functionality, aesthetics and asset appreciation.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
       pt: ['Santa Catarina', 'Rio Grande do Sul', 'Balneário Camboriú', 'Florianópolis'],
@@ -218,6 +224,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'conecta-cargas',
     slug: 'conecta-cargas',
     name: 'Conecta Cargas e Conexões',
+    logo: '/imgs/logotipos/7.webp',
     description: {
       pt: 'Logística terrestre internacional com expansão planejada para América e Eurásia.',
       en: 'International land logistics with planned expansion to Americas and Eurasia.',
@@ -236,8 +243,8 @@ export const partnersData: Record<string, PartnerData> = {
       { start: { lat: 40.7128, lng: -74.0060, label: 'New York' }, end: { lat: 55.7558, lng: 37.6173, label: 'Moscow' } },
     ],
     regions: {
-      pt: ['Brasil (2026)', 'Paraguai (2026)', 'Argentina (2026)', 'Chile (2026)', 'EUA (2027)', 'Eurásia (2027)'],
-      en: ['Brazil (2026)', 'Paraguay (2026)', 'Argentina (2026)', 'Chile (2026)', 'USA (2027)', 'Eurasia (2027)'],
+      pt: ['Brasil', 'Paraguai', 'Argentina', 'Chile', 'EUA', 'Eurásia'],
+      en: ['Brazil', 'Paraguay', 'Argentina', 'Chile', 'USA', 'Eurasia'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
@@ -252,6 +259,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'glda-ruminant',
     slug: 'glda-ruminant',
     name: 'GLDA Ruminant Abattoir',
+    logo: '/imgs/logotipos/1.webp',
     description: {
       pt: 'Frigorífico bovino com padrões internacionais de qualidade na Guiana Inglesa.',
       en: 'Bovine slaughterhouse with international quality standards in British Guiana.',
@@ -283,6 +291,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'agroplantio',
     slug: 'agroplantio',
     name: 'Agroplantio',
+    logo: '/imgs/logotipos/11.webp',
     description: {
       pt: 'Terraplanagem, obras pesadas e soluções agrícolas especializadas no Sul do Brasil.',
       en: 'Earthmoving, heavy construction and specialized agricultural solutions in Southern Brazil.',
@@ -294,7 +303,7 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'Agroplantio is a company specialized in earthmoving, heavy construction and integrated agricultural solutions. We operate in large earthmoving projects, soil preparation, rural infrastructure implementation, public and private bidding, as well as eucalyptus plantation and replanting. With our own fleet of heavy machinery and experienced technical team, we operate mainly in the states of Rio Grande do Sul and Santa Catarina, offering high-quality services for rural, industrial and infrastructure projects.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
       pt: ['Rio Grande do Sul', 'Santa Catarina', 'Porto Alegre', 'Florianópolis'],
@@ -314,6 +323,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'bc-capital',
     slug: 'bc-capital',
     name: 'BC Capital',
+    logo: '/imgs/logotipos/5.webp',
     description: {
       pt: 'Empresa Simples de Crédito com soluções financeiras completas em Santa Catarina.',
       en: 'Simple Credit Company with complete financial solutions in Santa Catarina.',
@@ -325,7 +335,7 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'BC Capital is a Simple Credit Company (ESC) specialized in personalized financial solutions. We offer payroll loans for employees, secured loans for legal entities, management and negotiation of federal assets worth approximately R$ 4 billion, as well as buying and selling federal precatories. Based in Santa Catarina, we combine financial expertise, procedural agility and competitive rates to serve companies and individuals seeking secure credit and strategic financial consulting.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
       pt: ['Santa Catarina', 'Balneário Camboriú', 'Florianópolis', 'Brasília (Operações)'],
@@ -345,6 +355,7 @@ export const partnersData: Record<string, PartnerData> = {
     id: 'tbpar-participacoes',
     slug: 'tbpar-participacoes',
     name: 'TBPAR Participações',
+    logo: '/imgs/logotipos/3.webp',
     description: {
       pt: 'Fusões e aquisições estratégicas em todo território nacional.',
       en: 'Strategic mergers and acquisitions throughout the national territory.',
@@ -356,11 +367,11 @@ export const partnersData: Record<string, PartnerData> = {
       en: 'TBPAR Participações specializes in mergers and acquisitions (M&A) operations in the Brazilian market. We operate in the identification, evaluation, negotiation and structuring of strategic transactions for companies seeking inorganic growth, market consolidation or divestment. With national presence and deep sectoral knowledge, we offer complete advisory in due diligence, valuation, financial modeling and post-merger integration. Our expertise connects buyers and sellers, generating value and business opportunities in all Brazilian states.',
     },
     mapConnections: [
-      { start: { lat: -14.2350, lng: -51.9253, label: 'Brasil' }, end: { lat: -14.2350, lng: -51.9253, label: 'Brasil' } },
+      { start: { lat: -28.7, lng: -50.0, label: 'Brasil' }, end: { lat: -28.7, lng: -50.0, label: 'Brasil' } },
     ],
     regions: {
-      pt: ['Brasil - Todos os Estados'],
-      en: ['Brazil - All States'],
+      pt: ['Região Sul', 'Região Sudeste', 'Região Centro-Oeste', 'Região Nordeste', 'Região Norte'],
+      en: ['South Region', 'Southeast Region', 'Central-West Region', 'Northeast Region', 'North Region'],
     },
     gallery: [
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
@@ -377,6 +388,7 @@ export const partnersList = Object.values(partnersData).map(partner => ({
   name: partner.name,
   description: partner.description,
   segment: partner.segment,
+  logo: partner.logo,
 }));
 
 // Dados dos segmentos

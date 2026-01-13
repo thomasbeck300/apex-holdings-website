@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
-import { Send, CheckCircle2, Clock, Shield, TrendingUp, FileText } from 'lucide-react';
+import { GlassButton } from '@/components/ui/glass-button';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
+import { Marquee } from '@/components/ui/marquee';
+import { CheckCircle2, Clock, Shield, TrendingUp, FileText, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { submitToGoogleSheets, formatAcquisitionData } from '@/lib/googleSheets';
 
 const Acquisition = () => {
   const { language, t } = useLanguage();
@@ -24,6 +28,39 @@ const Acquisition = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+
+  // Bloquear scroll da página quando o formulário estiver aberto (mas permitir scroll dentro do formulário)
+  useEffect(() => {
+    if (showForm) {
+      // Salvar a posição atual do scroll
+      const scrollY = window.scrollY;
+      // Desabilitar scroll apenas do body, não do formulário
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
+      // Scroll para o topo do formulário após um pequeno delay para garantir que o DOM foi atualizado
+      setTimeout(() => {
+        if (formContainerRef.current) {
+          formContainerRef.current.scrollTop = 0;
+        }
+      }, 300);
+      
+      return () => {
+        // Reabilitar scroll quando o formulário fechar
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        // Restaurar a posição do scroll
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [showForm]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -65,17 +102,46 @@ const Acquisition = () => {
 
     setIsSubmitting(true);
     
-    // TODO: Implementar envio do formulário
-    console.log('Form data:', formData);
-    
-    // Simular envio
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Enviar para Google Sheets
+      const formattedData = formatAcquisitionData(formData);
+      const result = await submitToGoogleSheets(formattedData);
+      
+      if (result.success) {
+        alert(language === 'pt' 
+          ? 'Formulário enviado com sucesso! Entraremos em contato em até 72h.'
+          : 'Form submitted successfully! We will contact you within 72h.'
+        );
+        
+        // Limpar formulário
+        setFormData({
+          razaoSocial: '',
+          nomeFantasia: '',
+          cnpj: '',
+          endereco: '',
+          socios: '',
+          regimeTributacao: '',
+          faturamentoMedio: '',
+          estoqueMedio: '',
+          imobilizado: '',
+          contasPagar: '',
+          passivosOcultos: '',
+          valorVendaSugerido: '',
+          aluguel: '',
+          motivoVenda: '',
+        });
+      } else {
+        throw new Error(result.error || 'Erro ao enviar formulário');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
       alert(language === 'pt' 
-        ? 'Formulário enviado com sucesso! Entraremos em contato em até 72h.'
-        : 'Form submitted successfully! We will contact you within 72h.'
+        ? 'Erro ao enviar formulário. Por favor, tente novamente.'
+        : 'Error submitting form. Please try again.'
       );
-    }, 1000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -118,89 +184,197 @@ const Acquisition = () => {
             </div>
 
             {/* Benefits Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <Clock className="w-6 h-6 text-foreground" />
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <Clock className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Resposta Rápida' : 'Quick Response'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Receba uma proposta detalhada em até 72 horas após o envio do formulário completo.'
+                          : 'Receive a detailed proposal within 72 hours after submitting the complete form.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Resposta Rápida' : 'Quick Response'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Receba uma proposta detalhada em até 72 horas após o envio do formulário completo.'
-                    : 'Receive a detailed proposal within 72 hours after submitting the complete form.'}
-                </p>
               </div>
 
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <Shield className="w-6 h-6 text-foreground" />
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <Shield className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Processo Confidencial' : 'Confidential Process'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Todas as informações são tratadas com absoluta confidencialidade e sigilo profissional.'
+                          : 'All information is treated with absolute confidentiality and professional secrecy.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Processo Confidencial' : 'Confidential Process'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Todas as informações são tratadas com absoluta confidencialidade e sigilo profissional.'
-                    : 'All information is treated with absolute confidentiality and professional secrecy.'}
-                </p>
               </div>
 
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <TrendingUp className="w-6 h-6 text-foreground" />
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <TrendingUp className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Avaliação Justa' : 'Fair Valuation'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Análise criteriosa que considera todos os aspectos do seu negócio para uma avaliação precisa.'
+                          : 'Rigorous analysis that considers all aspects of your business for an accurate valuation.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Avaliação Justa' : 'Fair Valuation'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Análise criteriosa que considera todos os aspectos do seu negócio para uma avaliação precisa.'
-                    : 'Rigorous analysis that considers all aspects of your business for an accurate valuation.'}
-                </p>
               </div>
 
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <FileText className="w-6 h-6 text-foreground" />
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <FileText className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Documentação Simplificada' : 'Simplified Documentation'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Processo descomplicado com suporte completo em todas as etapas da negociação.'
+                          : 'Uncomplicated process with full support at all stages of negotiation.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Documentação Simplificada' : 'Simplified Documentation'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Processo descomplicado com suporte completo em todas as etapas da negociação.'
-                    : 'Uncomplicated process with full support at all stages of negotiation.'}
-                </p>
               </div>
 
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <CheckCircle2 className="w-6 h-6 text-foreground" />
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <CheckCircle2 className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Experiência Comprovada' : 'Proven Experience'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Equipe especializada com histórico de transações bem-sucedidas em diversos segmentos.'
+                          : 'Specialized team with a history of successful transactions across various segments.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Experiência Comprovada' : 'Proven Experience'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Equipe especializada com histórico de transações bem-sucedidas em diversos segmentos.'
-                    : 'Specialized team with a history of successful transactions across various segments.'}
-                </p>
               </div>
 
-              <div className="flex flex-col items-start p-6 rounded-xl bg-card border border-border hover:border-foreground/20 transition-all">
-                <div className="p-3 rounded-lg bg-foreground/5 mb-4">
-                  <TrendingUp className="w-6 h-6 text-foreground" />
+              <div className="group">
+                <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                  <GlowingEffect
+                    spread={50}
+                    glow={true}
+                    disabled={false}
+                    proximity={0}
+                    inactiveZone={0}
+                    borderWidth={2}
+                  />
+                  <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                    {/* Glass effect overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    
+                    <div className="relative z-10">
+                      <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                        <TrendingUp className="w-6 h-6 text-foreground" />
+                      </div>
+                      <h3 className="text-xl font-medium text-foreground mb-2">
+                        {language === 'pt' ? 'Transição Suave' : 'Smooth Transition'}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {language === 'pt'
+                          ? 'Planejamento cuidadoso para garantir continuidade operacional e preservação do valor.'
+                          : 'Careful planning to ensure operational continuity and value preservation.'}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {language === 'pt' ? 'Transição Suave' : 'Smooth Transition'}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {language === 'pt'
-                    ? 'Planejamento cuidadoso para garantir continuidade operacional e preservação do valor.'
-                    : 'Careful planning to ensure operational continuity and value preservation.'}
-                </p>
               </div>
             </div>
 
@@ -252,6 +426,40 @@ const Acquisition = () => {
               </div>
             </div>
 
+            {/* Companies We Buy Section */}
+            <div className="mb-16">
+              <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4 text-center">
+                {language === 'pt' ? 'Empresas que Compramos' : 'Companies We Acquire'}
+              </h2>
+              <p className="text-base text-muted-foreground mb-8 text-center max-w-2xl mx-auto">
+                {language === 'pt'
+                  ? 'Foco em empresas do Simples Nacional'
+                  : 'Focus on Simples Nacional companies'}
+              </p>
+              
+              <div className="py-8 bg-background border-y border-border/50 rounded-lg px-4 md:px-0">
+                <Marquee className="[--duration:38s]" enableDrag>
+                  {[
+                    { pt: 'Mercados', en: 'Markets' },
+                    { pt: 'Farmácias', en: 'Pharmacies' },
+                    { pt: 'Distribuidoras de bebidas', en: 'Beverage Distributors' },
+                    { pt: 'Ferragens', en: 'Hardware Stores' },
+                    { pt: 'Autopeças', en: 'Auto Parts' },
+                    { pt: 'Oficinas', en: 'Workshops' },
+                    { pt: 'Padarias', en: 'Bakeries' },
+                    { pt: 'Minimercados', en: 'Convenience Stores' },
+                    { pt: 'Empresas em Recuperação Judicial', en: 'Companies in Judicial Recovery' },
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3 mx-4 md:mx-8">
+                      <span className="text-xl md:text-2xl font-light text-foreground">
+                        {item[language]}
+                      </span>
+                    </div>
+                  ))}
+                </Marquee>
+              </div>
+            </div>
+
             {/* CTA Section */}
             <div className="bg-card border border-border rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4">
@@ -268,11 +476,50 @@ const Acquisition = () => {
         </div>
       </section>
 
-      {/* Form Section */}
-      <section className="pb-32">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto">
-            <div className="mb-12 text-center">
+      {/* Form Section com Animação */}
+      <section className="pb-32 flex min-h-screen items-center justify-center px-6 relative">
+        {/* Modal Fixo - Sempre no centro da tela */}
+        {showForm && (
+          <>
+            {/* Overlay com blur */}
+            <div
+              className="fixed inset-0 bg-background/80 backdrop-blur-md z-[50] transition-all duration-700"
+              onClick={() => {
+                setShowForm(false);
+                // Limpar formulário ao fechar
+                setFormData({
+                  razaoSocial: '',
+                  nomeFantasia: '',
+                  cnpj: '',
+                  endereco: '',
+                  socios: '',
+                  regimeTributacao: '',
+                  faturamentoMedio: '',
+                  estoqueMedio: '',
+                  imobilizado: '',
+                  contasPagar: '',
+                  passivosOcultos: '',
+                  valorVendaSugerido: '',
+                  aluguel: '',
+                  motivoVenda: '',
+                });
+                setErrors({});
+              }}
+            />
+            
+            {/* Container do Modal - Fixo no centro da viewport */}
+            <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
+              <div
+                ref={formContainerRef}
+                className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-card border border-border rounded-2xl shadow-2xl pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: showForm ? 1 : 0,
+                  transform: showForm ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-6 md:p-8 lg:p-12">
+              <div className="mb-12 text-center">
               <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
                 {language === 'pt' ? 'Formulário de Aquisição' : 'Acquisition Form'}
               </h2>
@@ -586,12 +833,40 @@ const Acquisition = () => {
                 )}
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-6">
+              {/* Botões */}
+              <div className="flex gap-4 pt-6">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowForm(false);
+                    // Limpar formulário ao cancelar
+                    setFormData({
+                      razaoSocial: '',
+                      nomeFantasia: '',
+                      cnpj: '',
+                      endereco: '',
+                      socios: '',
+                      regimeTributacao: '',
+                      faturamentoMedio: '',
+                      estoqueMedio: '',
+                      imobilizado: '',
+                      contasPagar: '',
+                      passivosOcultos: '',
+                      valorVendaSugerido: '',
+                      aluguel: '',
+                      motivoVenda: '',
+                    });
+                    setErrors({});
+                  }}
+                  disabled={isSubmitting}
+                  className="flex-1 px-6 py-3 rounded-lg border border-border bg-transparent text-foreground hover:bg-foreground/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {language === 'pt' ? 'Cancelar' : 'Cancel'}
+                </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative w-full md:w-auto px-8 py-4 rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                  className="flex-1 px-6 py-3 rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -602,14 +877,138 @@ const Acquisition = () => {
                       <span>{language === 'pt' ? 'Enviando...' : 'Sending...'}</span>
                     </>
                   ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      <span>{language === 'pt' ? 'Enviar Proposta' : 'Submit Proposal'}</span>
-                    </>
+                    <span>{language === 'pt' ? 'Enviar Proposta' : 'Submit Proposal'}</span>
                   )}
                 </button>
               </div>
             </form>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+        
+        <div className="relative flex flex-col items-center gap-12 w-full max-w-4xl z-10">
+
+          {/* Status disponível */}
+          <div
+            className="flex items-center gap-3 transition-all duration-500"
+            style={{
+              opacity: showForm ? 0 : 1,
+              transform: showForm ? "translateY(-20px)" : "translateY(0)",
+              pointerEvents: showForm ? "none" : "auto",
+            }}
+          >
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+              {language === 'pt' ? 'Disponível para aquisição' : 'Available for acquisition'}
+            </span>
+          </div>
+
+          {/* Texto clicável com animação */}
+          <div
+            className="group relative cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setShowForm(true)}
+            style={{
+              pointerEvents: showForm ? "none" : "auto",
+            }}
+          >
+            <div className="flex flex-col items-center gap-6">
+              <h2
+                className="relative text-center text-5xl font-light tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: showForm ? 0 : 1,
+                  transform: showForm ? "translateY(-40px) scale(0.95)" : "translateY(0) scale(1)",
+                }}
+              >
+                <span className="block overflow-hidden">
+                  <span
+                    className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={{
+                      transform: isHovered && !showForm ? "translateY(-8%)" : "translateY(0)",
+                    }}
+                  >
+                    {language === 'pt' ? 'Solicite' : 'Request'}
+                  </span>
+                </span>
+                <span className="block overflow-hidden">
+                  <span
+                    className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75"
+                    style={{
+                      transform: isHovered && !showForm ? "translateY(-8%)" : "translateY(0)",
+                    }}
+                  >
+                    <span className="text-muted-foreground/60">{language === 'pt' ? 'sua Proposta' : 'Your Proposal'}</span>
+                  </span>
+                </span>
+              </h2>
+
+              <div className="relative mt-4 flex size-16 items-center justify-center sm:size-20">
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-full border transition-all ease-out"
+                  style={{
+                    borderColor: showForm ? "var(--foreground)" : isHovered ? "var(--foreground)" : "var(--border)",
+                    backgroundColor: showForm ? "transparent" : isHovered ? "var(--foreground)" : "transparent",
+                    transform: showForm ? "scale(3)" : isHovered ? "scale(1.1)" : "scale(1)",
+                    opacity: showForm ? 0 : 1,
+                    transitionDuration: showForm ? "700ms" : "500ms",
+                  }}
+                />
+                <ArrowUpRight
+                  className="size-6 transition-all ease-[cubic-bezier(0.16,1,0.3,1)] sm:size-7"
+                  style={{
+                    transform: showForm
+                      ? "translate(100px, -100px) scale(0.5)"
+                      : isHovered
+                          ? "translate(2px, -2px)"
+                          : "translate(0, 0)",
+                    opacity: showForm ? 0 : 1,
+                    color: isHovered && !showForm ? "var(--background)" : "var(--foreground)",
+                    transitionDuration: showForm ? "600ms" : "500ms",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="absolute -left-8 top-1/2 -translate-y-1/2 sm:-left-16">
+              <div
+                className="h-px w-8 bg-border transition-all duration-500 sm:w-12"
+                style={{
+                  transform: showForm ? "scaleX(0) translateX(-20px)" : isHovered ? "scaleX(1.5)" : "scaleX(1)",
+                  opacity: showForm ? 0 : isHovered ? 1 : 0.5,
+                }}
+              />
+            </div>
+            <div className="absolute -right-8 top-1/2 -translate-y-1/2 sm:-right-16">
+              <div
+                className="h-px w-8 bg-border transition-all duration-500 sm:w-12"
+                style={{
+                  transform: showForm ? "scaleX(0) translateX(20px)" : isHovered ? "scaleX(1.5)" : "scaleX(1)",
+                  opacity: showForm ? 0 : isHovered ? 1 : 0.5,
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Descrição */}
+          <div
+            className="mt-8 flex flex-col items-center gap-4 text-center transition-all duration-500 delay-100"
+            style={{
+              opacity: showForm ? 0 : 1,
+              transform: showForm ? "translateY(20px)" : "translateY(0)",
+              pointerEvents: showForm ? "none" : "auto",
+            }}
+          >
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              {language === 'pt' 
+                ? 'Preencha o formulário e nossa equipe entrará em contato para iniciar o processo de avaliação'
+                : 'Fill out the form and our team will contact you to start the evaluation process'}
+            </p>
           </div>
         </div>
       </section>

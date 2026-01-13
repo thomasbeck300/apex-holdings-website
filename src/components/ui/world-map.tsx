@@ -89,8 +89,8 @@ export function WorldMap({
     ? []
     : dots.filter(dot => !(dot.start.label === 'Brasil' && dot.end.label === 'Brasil'));
 
-  // Brazil center point
-  const brazilCenter = projectPoint(-14.2350, -51.9253);
+  // Brazil center point - centro geográfico do Brasil (ajustado mais ao sul)
+  const brazilCenter = projectPoint(-28.7, -50.0);
 
   // Collect unique locations to avoid duplicate labels
   const uniqueLocations = useMemo(() => {
@@ -409,49 +409,6 @@ export function WorldMap({
               </motion.g>
             )}
 
-            {/* Regions List - Vertical cards to the right of Brazil point */}
-            {regions.length > 0 && (() => {
-              const filteredRegions = regions.filter(region => 
-                !region.includes('Brasil - Todos') && 
-                !region.includes('Brazil - All') &&
-                region !== 'Brasil' &&
-                region !== 'Brazil'
-              );
-              
-              if (filteredRegions.length === 0) return null;
-              
-              const cardHeight = 30; // altura de cada card (incluindo gap)
-              const totalHeight = filteredRegions.length * cardHeight;
-              const maxHeight = 280;
-              const actualHeight = Math.min(totalHeight, maxHeight);
-              const startY = brazilCenter.y - (actualHeight / 2);
-              
-              return (
-                <foreignObject
-                  x={brazilCenter.x + 20}
-                  y={Math.max(15, startY)}
-                  width="150"
-                  height={actualHeight + 10}
-                  className="pointer-events-auto"
-                >
-                  <div className="flex flex-col gap-1.5 h-full overflow-y-auto">
-                    {filteredRegions.map((region, idx) => (
-                      <motion.div
-                        key={region}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 + idx * 0.08, duration: 0.3 }}
-                        className="px-2.5 py-1.5 rounded bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm text-[10px] font-medium whitespace-nowrap cursor-pointer hover:bg-white dark:hover:bg-black transition-colors"
-                        onMouseEnter={() => setHoveredLocation(region)}
-                        onMouseLeave={() => setHoveredLocation(null)}
-                      >
-                        {region}
-                      </motion.div>
-                    ))}
-                  </div>
-                </foreignObject>
-              );
-            })()}
           </g>
         )}
       </svg>

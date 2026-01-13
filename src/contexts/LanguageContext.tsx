@@ -173,7 +173,7 @@ const translations: Translations = {
   // Team Member - Thomas Beck
   'team.thomas.name': { pt: 'Thomas Beck', en: 'Thomas Beck' },
   'team.thomas.role': { pt: 'CEO & Fundador', en: 'CEO & Founder' },
-  'team.thomas.quote': { pt: 'Criar algo inspirador, passando segurança.', en: 'Creating something inspiring, providing security.' },
+  'team.thomas.quote': { pt: 'Forjar empreendimentos visionários fundamentados em excelência, transparência e compromisso inabalável com resultados sustentáveis.', en: 'Forging visionary enterprises grounded in excellence, transparency and unwavering commitment to sustainable results.' },
 
   // Testimonials 3D
   'testimonial.carlos.name': { pt: 'Carlos Silva', en: 'Carlos Silva' },

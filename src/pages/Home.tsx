@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, Users, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
+import { partnersData } from '@/data/partners';
 import { EtherealShadow } from '@/components/ui/ethereal-shadow';
 import { LogoCloudSimple } from '@/components/ui/logo-cloud-simple';
 import { WorldMap } from '@/components/ui/world-map';
@@ -91,41 +92,13 @@ const Home = () => {
     },
   ];
 
-  // Partner company logos
-  const partnerLogos = [
-    {
-      src: "https://svgl.app/library/microsoft_wordmark.svg",
-      alt: "Microsoft",
-    },
-    {
-      src: "https://svgl.app/library/google_wordmark.svg",
-      alt: "Google",
-    },
-    {
-      src: "https://svgl.app/library/amazon_wordmark_light.svg",
-      alt: "Amazon",
-    },
-    {
-      src: "https://svgl.app/library/meta_wordmark_light.svg",
-      alt: "Meta",
-    },
-    {
-      src: "https://svgl.app/library/ibm_wordmark_light.svg",
-      alt: "IBM",
-    },
-    {
-      src: "https://svgl.app/library/oracle_wordmark_light.svg",
-      alt: "Oracle",
-    },
-    {
-      src: "https://svgl.app/library/salesforce_wordmark_light.svg",
-      alt: "Salesforce",
-    },
-    {
-      src: "https://svgl.app/library/adobe_wordmark_light.svg",
-      alt: "Adobe",
-    },
-  ];
+  // Partner company logos - usando logos reais das empresas
+  const partnerLogos = Object.values(partnersData)
+    .filter(partner => partner.logo)
+    .map(partner => ({
+      src: partner.logo!,
+      alt: partner.name,
+    }));
 
   const highlights = [
     {
