@@ -30,8 +30,8 @@ const translations: Translations = {
   'home.highlights.segments.desc': { pt: 'Diversificação estratégica em setores de alto potencial', en: 'Strategic diversification in high-potential sectors' },
   'home.highlights.partners': { pt: 'Empresas Parceiras', en: 'Partner Companies' },
   'home.highlights.partners.desc': { pt: 'Portfólio selecionado de empresas líderes', en: 'Curated portfolio of leading companies' },
-  'home.highlights.vision': { pt: 'Visão Estratégica', en: 'Strategic Vision' },
-  'home.highlights.vision.desc': { pt: 'Planejamento de longo prazo e governança sólida', en: 'Long-term planning and solid governance' },
+  'home.highlights.vision': { pt: 'Quem somos', en: 'Who We Are' },
+  'home.highlights.vision.desc': { pt: 'Conheça nossa história, valores e propósito', en: 'Discover our history, values and purpose' },
 
   // About
   'about.title': { pt: 'Sobre Nós', en: 'About Us' },
@@ -91,20 +91,33 @@ const translations: Translations = {
   'cta.description': { pt: 'Investimentos estratégicos e parcerias sólidas que geram valor sustentável. Nossa missão é identificar oportunidades e potencializar empresas com visão de longo prazo.', en: 'Strategic investments and solid partnerships that generate sustainable value. Our mission is to identify opportunities and empower companies with long-term vision.' },
 
   // About - Storytelling
-  'about.story.chapter1': { pt: 'Fundada com a missão de criar valor duradouro através de investimentos estratégicos.', en: 'Founded with the mission to create lasting value through strategic investments.' },
-  'about.story.chapter1.title': { pt: 'Capítulo 1', en: 'Chapter 1' },
-  'about.story.chapter1.period': { pt: '2009 - Os Primeiros Passos', en: '2009 - The First Steps' },
+  'about.founded': { pt: 'Criada em 2018', en: 'Founded in 2018' },
+  'about.journey': { pt: 'Nossa Jornada', en: 'Our Journey' },
+  
+  'about.story.chapter1': { pt: 'Início da jornada com foco em investimentos estratégicos e geração de valor.', en: 'Beginning of the journey focused on strategic investments and value creation.' },
+  'about.story.chapter1.title': { pt: 'Fundação', en: 'Foundation' },
+  'about.story.chapter1.period': { pt: '2018', en: '2018' },
   'about.story.chapter1.company': { pt: 'Origem', en: 'Origin' },
 
-  'about.story.chapter2': { pt: 'Crescemos construindo parcerias sólidas e expandindo para novos segmentos com visão de longo prazo.', en: 'We grew by building solid partnerships and expanding into new segments with long-term vision.' },
-  'about.story.chapter2.title': { pt: 'Capítulo 2', en: 'Chapter 2' },
-  'about.story.chapter2.period': { pt: '2015 - Expansão Estratégica', en: '2015 - Strategic Expansion' },
-  'about.story.chapter2.company': { pt: 'Crescimento', en: 'Growth' },
+  'about.story.chapter2': { pt: 'Crescimento regional com entrada estratégica no Norte do Brasil.', en: 'Regional growth with strategic entry into Northern Brazil.' },
+  'about.story.chapter2.title': { pt: 'Expansão para o Norte', en: 'Northern Expansion' },
+  'about.story.chapter2.period': { pt: '2020', en: '2020' },
+  'about.story.chapter2.company': { pt: 'Maceió/AL', en: 'Maceió/AL' },
 
-  'about.story.chapter3': { pt: 'Hoje somos referência em governança, gestão de portfólio e geração de valor sustentável.', en: 'Today we are a reference in governance, portfolio management and sustainable value creation.' },
-  'about.story.chapter3.title': { pt: 'Capítulo 3', en: 'Chapter 3' },
-  'about.story.chapter3.period': { pt: '2025 - Consolidação', en: '2025 - Consolidation' },
-  'about.story.chapter3.company': { pt: 'Presente', en: 'Present' },
+  'about.story.chapter3': { pt: 'Fortalecimento da presença na região Sul com novos escritórios estratégicos.', en: 'Strengthening presence in the South region with new strategic offices.' },
+  'about.story.chapter3.title': { pt: 'Expansão para SC e PR', en: 'SC and PR Expansion' },
+  'about.story.chapter3.period': { pt: '2021', en: '2021' },
+  'about.story.chapter3.company': { pt: 'Florianópolis/SC e Curitiba/PR', en: 'Florianópolis/SC and Curitiba/PR' },
+
+  'about.story.chapter4': { pt: 'Reposicionamento estratégico com mudança da matriz para Santa Catarina.', en: 'Strategic repositioning with headquarters relocation to Santa Catarina.' },
+  'about.story.chapter4.title': { pt: 'Nova Sede', en: 'New Headquarters' },
+  'about.story.chapter4.period': { pt: '2023', en: '2023' },
+  'about.story.chapter4.company': { pt: 'Balneário Camboriú/SC', en: 'Balneário Camboriú/SC' },
+
+  'about.story.chapter5': { pt: 'Entrada no maior mercado do país, consolidando presença nacional.', en: 'Entry into the country\'s largest market, consolidating national presence.' },
+  'about.story.chapter5.title': { pt: 'Expansão para SP', en: 'SP Expansion' },
+  'about.story.chapter5.period': { pt: '2025', en: '2025' },
+  'about.story.chapter5.company': { pt: 'São Paulo/SP', en: 'São Paulo/SP' },
 
   'about.pillars.title': { pt: 'Nossos Pilares', en: 'Our Pillars' },
   'about.pillars.subtitle': { pt: 'Os valores que guiam cada decisão estratégica', en: 'The values that guide every strategic decision' },
@@ -145,8 +158,13 @@ const translations: Translations = {
   'contact.work.email': { pt: 'Enviar E-mail', en: 'Send Email' },
   'contact.work.description': { pt: 'Tem um projeto em mente? Adoraríamos ouvir sobre ele. Vamos criar algo excepcional juntos.', en: 'Have a project in mind? We\'d love to hear about it. Let\'s create something exceptional together.' },
 
-  // Gallery
-  'gallery.title': { pt: 'Nossos Projetos', en: 'Our Projects' },
+  // Gallery / Projects
+  'gallery.title': { pt: 'Projetos', en: 'Projects' },
+  'gallery.delivered': { pt: 'Projetos Entregues', en: 'Delivered Projects' },
+  'gallery.category.frigorifico': { pt: 'Frigoríficos', en: 'Cold Storage' },
+  'gallery.category.pavilhao': { pt: 'Pavilhões', en: 'Warehouses' },
+  'gallery.category.distribuidora': { pt: 'Distribuidoras de carne', en: 'Meat Distributors' },
+  'gallery.category.escritorio': { pt: 'Escritórios', en: 'Offices' },
   
   // Common
   'common.learnmore': { pt: 'Saiba mais', en: 'Learn more' },

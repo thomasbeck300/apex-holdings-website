@@ -46,7 +46,7 @@ export function DesignTestimonial({ testimonials }: DesignTestimonialProps) {
   const goPrev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
 
   useEffect(() => {
-    const timer = setInterval(goNext, 6000)
+    const timer = setInterval(goNext, 8000)
     return () => clearInterval(timer)
   }, [])
 

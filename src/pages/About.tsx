@@ -8,7 +8,7 @@ import { Building2, TrendingUp, Users, Target } from 'lucide-react';
 const About = () => {
   const { t } = useLanguage();
 
-  // Storytelling da holding em 3 capítulos
+  // Timeline da holding - 5 marcos históricos
   const storyChapters = [
     {
       quote: t('about.story.chapter1'),
@@ -27,6 +27,18 @@ const About = () => {
       author: t('about.story.chapter3.title'),
       role: t('about.story.chapter3.period'),
       company: t('about.story.chapter3.company'),
+    },
+    {
+      quote: t('about.story.chapter4'),
+      author: t('about.story.chapter4.title'),
+      role: t('about.story.chapter4.period'),
+      company: t('about.story.chapter4.company'),
+    },
+    {
+      quote: t('about.story.chapter5'),
+      author: t('about.story.chapter5.title'),
+      role: t('about.story.chapter5.period'),
+      company: t('about.story.chapter5.company'),
     },
   ];
 
@@ -55,8 +67,26 @@ const About = () => {
 
   return (
     <Layout>
-      {/* Storytelling com Design Testimonial */}
-      <section className="pt-24 py-20 bg-background">
+      {/* Hero Section - Founded Year */}
+      <section className="pt-32 pb-12 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-border"></div>
+              <span className="text-sm text-muted-foreground uppercase tracking-wider font-medium">
+                {t('about.founded')}
+              </span>
+              <div className="h-px w-12 bg-border"></div>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight">
+              {t('about.journey')}
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline com Design Testimonial */}
+      <section className="py-20 bg-background">
         <DesignTestimonial testimonials={storyChapters} />
       </section>
 

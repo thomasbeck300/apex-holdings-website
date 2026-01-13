@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useRef } from 'react';
+import React, { ComponentPropsWithoutRef, useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
 interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
@@ -16,6 +16,16 @@ interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
      * @default false
      */
     pauseOnHover?: boolean;
+    /**
+     * Whether to speed up the animation on hover
+     * @default false
+     */
+    speedUpOnHover?: boolean;
+    /**
+     * Enable drag to scroll on mobile
+     * @default false
+     */
+    enableDrag?: boolean;
     /**
      * Content to be displayed in the marquee
      */
@@ -52,6 +62,8 @@ export function Marquee({
     className,
     reverse = false,
     pauseOnHover = false,
+    speedUpOnHover = false,
+    enableDrag = false,
     children,
     vertical = false,
     repeat = 4,
@@ -61,6 +73,44 @@ export function Marquee({
     ...props
 }: MarqueeProps) {
     const marqueeRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    useEffect(() => {
+        if (!enableDrag || !marqueeRef.current) return;
+
+        const handleTouchStart = (e: TouchEvent) => {
+            setIsDragging(true);
+            setStartX(e.touches[0].pageX - (marqueeRef.current?.offsetLeft || 0));
+            setScrollLeft(marqueeRef.current?.scrollLeft || 0);
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - (marqueeRef.current?.offsetLeft || 0);
+            const walk = (x - startX) * 2;
+            if (marqueeRef.current) {
+                marqueeRef.current.scrollLeft = scrollLeft - walk;
+            }
+        };
+
+        const handleTouchEnd = () => {
+            setIsDragging(false);
+        };
+
+        const element = marqueeRef.current;
+        element.addEventListener('touchstart', handleTouchStart, { passive: true });
+        element.addEventListener('touchmove', handleTouchMove, { passive: false });
+        element.addEventListener('touchend', handleTouchEnd);
+
+        return () => {
+            element?.removeEventListener('touchstart', handleTouchStart);
+            element?.removeEventListener('touchmove', handleTouchMove);
+            element?.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [enableDrag, isDragging, startX, scrollLeft]);
 
     return (
         <div
@@ -73,6 +123,7 @@ export function Marquee({
                     'flex-row': !vertical,
                     'flex-col': vertical,
                 },
+                enableDrag && 'touch-pan-x',
                 className,
             )}
             aria-label={ariaLabel}
@@ -88,11 +139,13 @@ export function Marquee({
                                 key={i}
                                 className={cn(
                                     !vertical ? 'flex-row [gap:var(--gap)]' : 'flex-col [gap:var(--gap)]',
-                                    'flex shrink-0 justify-around',
+                                    'flex shrink-0 justify-around [animation-timing-function:linear]',
                                     !vertical && 'animate-marquee flex-row',
                                     vertical && 'animate-marquee-vertical flex-col',
                                     pauseOnHover && 'group-hover:[animation-play-state:paused]',
+                                    speedUpOnHover && 'group-hover:[animation-duration:calc(var(--duration)*0.45)]',
                                     reverse && '[animation-direction:reverse]',
+                                    isDragging && '[animation-play-state:paused]',
                                 )}
                             >
                                 {children}
@@ -100,7 +153,7 @@ export function Marquee({
                         ))}
                     </>
                 ),
-                [repeat, children, vertical, pauseOnHover, reverse],
+                [repeat, children, vertical, pauseOnHover, speedUpOnHover, reverse, isDragging],
             )}
         </div>
     );

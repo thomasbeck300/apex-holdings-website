@@ -17,24 +17,42 @@ import KineticScrollGallery from '@/components/ui/kinetic-scroll-gallery';
 import { ElegantMobileGallery } from '@/components/ui/elegant-mobile-gallery';
 import { GlassButton } from '@/components/ui/glass-button';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 const Home = () => {
   const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState('frigorifico');
 
-  // Gallery images
-  const galleryImages = [
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
-    'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80',
-    'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&q=80',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=800&q=80',
-    'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=800&q=80',
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
-    'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&q=80',
-    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
-    'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=800&q=80',
+  // Projects images organized by category
+  const projectsByCategory = {
+    frigorifico: [
+      'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80',
+      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
+      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80',
+    ],
+    pavilhao: [
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
+      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
+    ],
+    distribuidora: [
+      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80',
+      'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&q=80',
+      'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=800&q=80',
+    ],
+    escritorio: [
+      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80',
+      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
+      'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=800&q=80',
+    ],
+  };
+
+  // All images combined for galleries
+  const allProjectImages = [
+    ...projectsByCategory.frigorifico,
+    ...projectsByCategory.pavilhao,
+    ...projectsByCategory.distribuidora,
+    ...projectsByCategory.escritorio,
   ];
 
   // Team member data
@@ -187,13 +205,13 @@ const Home = () => {
             {/* Stats Section */}
             <div className="flex gap-12 lg:gap-20 items-end">
               <div className="text-center lg:text-left">
-                <div className="text-5xl lg:text-6xl font-light leading-none mb-3 text-foreground">5+</div>
+                <div className="text-5xl lg:text-6xl font-light leading-none mb-3 text-foreground">+8</div>
                 <div className="text-base text-muted-foreground font-normal whitespace-nowrap">
                   {t('home.highlights.segments')}
                 </div>
               </div>
               <div className="text-center lg:text-left">
-                <div className="text-5xl lg:text-6xl font-light leading-none mb-3 text-foreground">10+</div>
+                <div className="text-5xl lg:text-6xl font-light leading-none mb-3 text-foreground">+12</div>
                 <div className="text-base text-muted-foreground font-normal whitespace-nowrap">
                   {t('home.highlights.partners')}
                 </div>
@@ -284,6 +302,72 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Projects Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-6 lg:px-12">
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-3">
+              {t('gallery.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground font-light">
+              {t('gallery.delivered')}
+            </p>
+          </div>
+
+          {/* Categories Tabs */}
+          <div className="max-w-4xl mx-auto mb-10">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+              {[
+                { key: 'frigorifico', label: t('gallery.category.frigorifico') },
+                { key: 'pavilhao', label: t('gallery.category.pavilhao') },
+                { key: 'distribuidora', label: t('gallery.category.distribuidora') },
+                { key: 'escritorio', label: t('gallery.category.escritorio') },
+              ].map((category) => (
+                <button
+                  key={category.key}
+                  onClick={() => setActiveCategory(category.key)}
+                  className={cn(
+                    'px-6 py-3 rounded-full text-sm md:text-base font-normal transition-all duration-300',
+                    'border border-border/50 backdrop-blur-sm',
+                    activeCategory === category.key
+                      ? 'bg-foreground text-background shadow-lg scale-105'
+                      : 'bg-card/50 text-muted-foreground hover:bg-card hover:text-foreground hover:border-border'
+                  )}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Images Grid */}
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {projectsByCategory[activeCategory as keyof typeof projectsByCategory].map((image, index) => (
+                <div
+                  key={`${activeCategory}-${index}`}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-lg bg-secondary/30 opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <img
+                    src={image}
+                    alt={`${activeCategory} ${index + 1}`}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Number badge on hover */}
+                  <div className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm text-sm font-medium text-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
+                    {index + 1}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Highlights Section */}
       <section className="py-20">
         <div className="container mx-auto px-6 lg:px-12">
@@ -343,26 +427,26 @@ const Home = () => {
 
       {/* Marquee Stats Section */}
       <section className="py-8 bg-background border-y border-border/50">
-        <Marquee className="[--duration:30s]" pauseOnHover>
-          <div className="flex items-center gap-3 mx-8">
-            <span className="text-3xl font-light text-foreground">R$ 500M+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.assets')}</span>
-          </div>
-          <div className="flex items-center gap-3 mx-8">
-            <span className="text-3xl font-light text-foreground">10+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.partners')}</span>
-          </div>
-          <div className="flex items-center gap-3 mx-8">
-            <span className="text-3xl font-light text-foreground">5</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.segments')}</span>
-          </div>
-          <div className="flex items-center gap-3 mx-8">
-            <span className="text-3xl font-light text-foreground">15+</span>
-            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.experience')}</span>
-          </div>
+        <Marquee className="[--duration:30s]" enableDrag>
           <div className="flex items-center gap-3 mx-8">
             <span className="text-3xl font-light text-foreground">98%</span>
             <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.success')}</span>
+          </div>
+          <div className="flex items-center gap-3 mx-8">
+            <span className="text-3xl font-light text-foreground">+12</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.partners')}</span>
+          </div>
+          <div className="flex items-center gap-3 mx-8">
+            <span className="text-3xl font-light text-foreground">+8</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.segments')}</span>
+          </div>
+          <div className="flex items-center gap-3 mx-8">
+            <span className="text-3xl font-light text-foreground">+4 bi</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.assets')}</span>
+          </div>
+          <div className="flex items-center gap-3 mx-8">
+            <span className="text-3xl font-light text-foreground">+8</span>
+            <span className="text-sm text-muted-foreground uppercase tracking-wider">{t('stats.experience')}</span>
           </div>
         </Marquee>
       </section>
@@ -389,30 +473,6 @@ const Home = () => {
           preTitle={t('cta.building')}
           description={t('cta.description')}
         />
-      </section>
-
-      {/* Kinetic Gallery Section - Desktop Only */}
-      <section className="hidden lg:block pt-8 pb-6 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground">
-              {t('gallery.title')}
-            </h2>
-          </div>
-          <KineticScrollGallery images={galleryImages} />
-        </div>
-      </section>
-
-      {/* Elegant Gallery - Mobile Only */}
-      <section className="lg:hidden pt-8 pb-6 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-light tracking-tight text-foreground">
-              {t('gallery.title')}
-            </h2>
-          </div>
-          <ElegantMobileGallery images={galleryImages} />
-        </div>
       </section>
     </Layout>
   );

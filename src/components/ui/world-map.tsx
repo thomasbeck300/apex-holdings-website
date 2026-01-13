@@ -14,6 +14,7 @@ interface MapProps {
   labelClassName?: string;
   animationDuration?: number;
   loop?: boolean;
+  regions?: string[]; // Regiões de atuação para mostrar em cards quando for apenas Brasil
 }
 
 export function WorldMap({ 
@@ -22,7 +23,8 @@ export function WorldMap({
   showLabels = true,
   labelClassName = "text-sm",
   animationDuration = 2,
-  loop = true
+  loop = true,
+  regions = []
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
@@ -60,9 +62,61 @@ export function WorldMap({
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
   };
 
+  // Helper function to check if coordinates are within Brazil bounds
+  const isInBrazil = (lat: number, lng: number) => {
+    // Brazil approximate bounds: lat -33 to 5, lng -74 to -32
+    return lat >= -33 && lat <= 5 && lng >= -74 && lng <= -32;
+  };
+
+  // Detect if ALL connections are within Brazil (no international)
+  const hasOnlyBrazil = useMemo(() => {
+    if (dots.length === 0) return false;
+    
+    // Check if it's a single "Brasil" point
+    if (dots.length === 1 && dots[0].start.label === 'Brasil' && dots[0].end.label === 'Brasil') {
+      return true;
+    }
+    
+    // Check if ALL connections are within Brazil bounds
+    return dots.every(dot => 
+      isInBrazil(dot.start.lat, dot.start.lng) && 
+      isInBrazil(dot.end.lat, dot.end.lng)
+    );
+  }, [dots]);
+  
+  // Filter out Brazil-only dots if we have ONLY Brazil (no international)
+  const filteredDots = hasOnlyBrazil 
+    ? []
+    : dots.filter(dot => !(dot.start.label === 'Brasil' && dot.end.label === 'Brasil'));
+
+  // Brazil center point
+  const brazilCenter = projectPoint(-14.2350, -51.9253);
+
+  // Collect unique locations to avoid duplicate labels
+  const uniqueLocations = useMemo(() => {
+    const locations = new Map<string, { lat: number; lng: number; label: string }>();
+    
+    filteredDots.forEach(dot => {
+      if (dot.start.label) {
+        const key = `${dot.start.lat}-${dot.start.lng}`;
+        if (!locations.has(key)) {
+          locations.set(key, { lat: dot.start.lat, lng: dot.start.lng, label: dot.start.label });
+        }
+      }
+      if (dot.end.label) {
+        const key = `${dot.end.lat}-${dot.end.lng}`;
+        if (!locations.has(key)) {
+          locations.set(key, { lat: dot.end.lat, lng: dot.end.lng, label: dot.end.label });
+        }
+      }
+    });
+    
+    return Array.from(locations.values());
+  }, [filteredDots]);
+
   // Calculate animation timing
   const staggerDelay = 0.3;
-  const totalAnimationTime = dots.length * staggerDelay + animationDuration;
+  const totalAnimationTime = filteredDots.length * staggerDelay + animationDuration;
   const pauseTime = 2; // Pause for 2 seconds when all paths are drawn
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
@@ -98,7 +152,8 @@ export function WorldMap({
           </filter>
         </defs>
 
-        {dots.map((dot, i) => {
+        {/* Paths */}
+        {filteredDots.map((dot, i) => {
           const startPoint = projectPoint(dot.start.lat, dot.start.lng);
           const endPoint = projectPoint(dot.end.lat, dot.end.lng);
           
@@ -158,7 +213,8 @@ export function WorldMap({
           );
         })}
 
-        {dots.map((dot, i) => {
+        {/* Points and Labels - Using unique locations to avoid duplicates */}
+        {filteredDots.map((dot, i) => {
           const startPoint = projectPoint(dot.start.lat, dot.start.lng);
           const endPoint = projectPoint(dot.end.lat, dot.end.lng);
           
@@ -206,29 +262,6 @@ export function WorldMap({
                     />
                   </circle>
                 </motion.g>
-                
-                {showLabels && dot.start.label && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 * i + 0.3, duration: 0.5 }}
-                    className="pointer-events-none"
-                  >
-                    <foreignObject
-                      x={startPoint.x - 50}
-                      y={startPoint.y - 35}
-                      width="100"
-                      height="30"
-                      className="block"
-                    >
-                      <div className="flex items-center justify-center h-full">
-                        <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
-                          {dot.start.label}
-                        </span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
               </g>
               
               {/* End Point */}
@@ -273,33 +306,154 @@ export function WorldMap({
                     />
                   </circle>
                 </motion.g>
-                
-                {showLabels && dot.end.label && (
-                  <motion.g
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 * i + 0.5, duration: 0.5 }}
-                    className="pointer-events-none"
-                  >
-                    <foreignObject
-                      x={endPoint.x - 50}
-                      y={endPoint.y - 35}
-                      width="100"
-                      height="30"
-                      className="block"
-                    >
-                      <div className="flex items-center justify-center h-full">
-                        <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
-                          {dot.end.label}
-                        </span>
-                      </div>
-                    </foreignObject>
-                  </motion.g>
-                )}
               </g>
             </g>
           );
         })}
+
+        {/* Labels - Render only unique locations to avoid duplicates */}
+        {showLabels && uniqueLocations.map((location, i) => {
+          const point = projectPoint(location.lat, location.lng);
+          // Alternate positions: even = above, odd = below
+          const labelY = i % 2 === 0 ? point.y - 25 : point.y + 15;
+          
+          return (
+            <motion.g
+              key={`label-${location.lat}-${location.lng}`}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+              className="pointer-events-none"
+            >
+              <foreignObject
+                x={point.x - 45}
+                y={labelY}
+                width="90"
+                height="22"
+                className="block"
+              >
+                <div className="flex items-center justify-center h-full">
+                  <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
+                    {location.label}
+                  </span>
+                </div>
+              </foreignObject>
+            </motion.g>
+          );
+        })}
+
+        {/* Brazil Only Point - Render if we have ONLY Brazil (no international connections) */}
+        {hasOnlyBrazil && (
+          <g>
+            <motion.g
+              onHoverStart={() => setHoveredLocation('Brasil')}
+              onHoverEnd={() => setHoveredLocation(null)}
+              className="cursor-pointer"
+              whileHover={{ scale: 1.2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <circle
+                cx={brazilCenter.x}
+                cy={brazilCenter.y}
+                r="4"
+                fill={lineColor}
+                filter="url(#glow)"
+                className="drop-shadow-lg"
+              />
+              <circle
+                cx={brazilCenter.x}
+                cy={brazilCenter.y}
+                r="4"
+                fill={lineColor}
+                opacity="0.5"
+              >
+                <animate
+                  attributeName="r"
+                  from="4"
+                  to="14"
+                  dur="2s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+                <animate
+                  attributeName="opacity"
+                  from="0.6"
+                  to="0"
+                  dur="2s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+            </motion.g>
+            
+            {showLabels && (
+              <motion.g
+                initial={{ opacity: 0, y: 5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="pointer-events-none"
+              >
+                <foreignObject
+                  x={brazilCenter.x - 25}
+                  y={brazilCenter.y - 25}
+                  width="50"
+                  height="18"
+                  className="block"
+                >
+                  <div className="flex items-center justify-center h-full">
+                    <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
+                      Brasil
+                    </span>
+                  </div>
+                </foreignObject>
+              </motion.g>
+            )}
+
+            {/* Regions List - Vertical cards to the right of Brazil point */}
+            {regions.length > 0 && (() => {
+              const filteredRegions = regions.filter(region => 
+                !region.includes('Brasil - Todos') && 
+                !region.includes('Brazil - All') &&
+                region !== 'Brasil' &&
+                region !== 'Brazil'
+              );
+              
+              if (filteredRegions.length === 0) return null;
+              
+              const cardHeight = 30; // altura de cada card (incluindo gap)
+              const totalHeight = filteredRegions.length * cardHeight;
+              const maxHeight = 280;
+              const actualHeight = Math.min(totalHeight, maxHeight);
+              const startY = brazilCenter.y - (actualHeight / 2);
+              
+              return (
+                <foreignObject
+                  x={brazilCenter.x + 20}
+                  y={Math.max(15, startY)}
+                  width="150"
+                  height={actualHeight + 10}
+                  className="pointer-events-auto"
+                >
+                  <div className="flex flex-col gap-1.5 h-full overflow-y-auto">
+                    {filteredRegions.map((region, idx) => (
+                      <motion.div
+                        key={region}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 + idx * 0.08, duration: 0.3 }}
+                        className="px-2.5 py-1.5 rounded bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm text-[10px] font-medium whitespace-nowrap cursor-pointer hover:bg-white dark:hover:bg-black transition-colors"
+                        onMouseEnter={() => setHoveredLocation(region)}
+                        onMouseLeave={() => setHoveredLocation(null)}
+                      >
+                        {region}
+                      </motion.div>
+                    ))}
+                  </div>
+                </foreignObject>
+              );
+            })()}
+          </g>
+        )}
       </svg>
       
       {/* Mobile Tooltip */}
@@ -318,4 +472,3 @@ export function WorldMap({
     </div>
   );
 }
-
