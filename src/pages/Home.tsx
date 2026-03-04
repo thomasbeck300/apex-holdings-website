@@ -3,7 +3,7 @@ import { ArrowRight, Building2, Users, Target } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Layout } from '@/components/Layout';
 import { partnersData } from '@/data/partners';
-import { EtherealShadow } from '@/components/ui/ethereal-shadow';
+
 import { LogoCloudSimple } from '@/components/ui/logo-cloud-simple';
 import { WorldMap } from '@/components/ui/world-map';
 import { AnimatedText } from '@/components/ui/animated-text';
@@ -137,15 +137,8 @@ const Home = () => {
           style={{ backgroundImage: 'url(/imgs/bg-mobile.webp)' }}
         />
 
-        {/* Ethereal Shadow Effect - Hidden on Mobile */}
-        <div className="hidden md:block absolute inset-0 z-[1] opacity-80 pointer-events-none">
-          <EtherealShadow
-            color="rgba(90, 90, 90, 1)"
-            animation={{ scale: 80, speed: 70 }}
-            noise={{ opacity: 0.8, scale: 1.5 }}
-            sizing="fill"
-          />
-        </div>
+        {/* Vignette Effect - replaces EtherealShadow for cross-browser compatibility */}
+        <div className="hidden md:block absolute inset-0 z-[1] opacity-70 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 40%, transparent 30%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%)' }} />
 
         {/* Subtle gradient overlays */}
         <div className="absolute inset-0 pointer-events-none z-[2]">
@@ -327,6 +320,8 @@ const Home = () => {
                     src={image}
                     alt={`${activeCategory} ${index + 1}`}
                     className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   

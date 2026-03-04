@@ -63,12 +63,12 @@ export const partnersData: Record<string, PartnerData> = {
     ],
     externalLink: 'https://www.gestaoleao.com.br/',
   },
-  
+
   'lge-tec': {
     id: 'lge-tec',
     slug: 'lge-tec',
     name: 'LGE Tec',
-    logo: '/imgs/logotipos/9.webp',
+    logo: '/imgs/logotipos/1.webp',
     description: {
       pt: 'Desenvolvimento de aplicativos inovadores com tecnologia de ponta para todo o Brasil.',
       en: 'Development of innovative applications with cutting-edge technology throughout Brazil.',
@@ -254,35 +254,37 @@ export const partnersData: Record<string, PartnerData> = {
     ],
   },
 
-  // ====== FRIGORÍFICO BOVINO ======
-  'glda-ruminant': {
-    id: 'glda-ruminant',
-    slug: 'glda-ruminant',
-    name: 'GLDA Ruminant Abattoir',
-    logo: '/imgs/logotipos/1.webp',
+  // ====== COMODITIES / AGRONEGÓCIO ======
+  'tbpar-agrobusiness': {
+    id: 'tbpar-agrobusiness',
+    slug: 'tbpar-agrobusiness',
+    name: 'TB PAR Agrobusiness',
+    logo: '/imgs/logotipos/9.png',
     description: {
-      pt: 'Frigorífico bovino com padrões internacionais de qualidade na Guiana Inglesa.',
-      en: 'Bovine slaughterhouse with international quality standards in British Guiana.',
+      pt: 'Comercialização e trading de commodities agrícolas com atuação internacional.',
+      en: 'Agricultural commodity trading and commercialization with international operations.',
     },
-    segment: { pt: 'Frigorífico Bovino', en: 'Cattle Slaughterhouse' },
-    segmentId: 'slaughterhouse',
+    segment: { pt: 'Comodities', en: 'Commodities' },
+    segmentId: 'agribusiness',
     fullDescription: {
-      pt: 'GLDA Ruminant Abattoir é um frigorífico bovino de padrão internacional localizado na Guiana Inglesa. Especializado no abate e processamento de bovinos, operamos com tecnologia de ponta, rigorosos controles sanitários e certificações internacionais. Nossa planta industrial moderna garante máxima qualidade e segurança alimentar, atendendo os mais exigentes mercados globais. Comprometidos com práticas sustentáveis e bem-estar animal, exportamos carne bovina premium, contribuindo para a economia local e conectando a Guiana aos mercados internacionais.',
-      en: 'GLDA Ruminant Abattoir is an international standard bovine slaughterhouse located in British Guiana. Specialized in cattle slaughter and processing, we operate with cutting-edge technology, rigorous sanitary controls and international certifications. Our modern industrial plant ensures maximum quality and food safety, serving the most demanding global markets. Committed to sustainable practices and animal welfare, we export premium beef, contributing to the local economy and connecting Guyana to international markets.',
+      pt: 'A TB PAR Agrobusiness é uma empresa especializada na comercialização e trading de commodities agrícolas, operando nos principais mercados nacionais e internacionais. Atuamos na compra, venda e exportação de grãos, cereais, oleaginosas e insumos agropecuários, conectando produtores brasileiros aos mercados globais com eficiência logística e inteligência de mercado. Nossa equipe combina expertise em trading, gestão de risco e consultoria agronômica para maximizar o valor da cadeia produtiva e garantir segurança nas operações. Com presença estratégica no agronegócio brasileiro, contribuímos para o desenvolvimento sustentável do setor e a geração de divisas para o país.',
+      en: 'TB PAR Agrobusiness is a company specialized in the commercialization and trading of agricultural commodities, operating in the main national and international markets. We operate in the purchase, sale and export of grains, cereals, oilseeds and agricultural inputs, connecting Brazilian producers to global markets with logistical efficiency and market intelligence. Our team combines expertise in trading, risk management and agronomic consulting to maximize the value of the production chain and ensure operational safety. With a strategic presence in Brazilian agribusiness, we contribute to the sustainable development of the sector and the generation of foreign exchange for the country.',
     },
     mapConnections: [
-      { start: { lat: 6.8013, lng: -58.1551, label: 'Georgetown' }, end: { lat: -23.5505, lng: -46.6333, label: 'São Paulo' } },
-      { start: { lat: 6.8013, lng: -58.1551, label: 'Georgetown' }, end: { lat: 40.7128, lng: -74.0060, label: 'New York' } },
+      { start: { lat: -15.7801, lng: -47.9292, label: 'Brasília' }, end: { lat: -34.6037, lng: -58.3816, label: 'Buenos Aires' } },
+      { start: { lat: -15.7801, lng: -47.9292, label: 'Brasília' }, end: { lat: 40.7128, lng: -74.0060, label: 'New York' } },
+      { start: { lat: -15.7801, lng: -47.9292, label: 'Brasília' }, end: { lat: 39.9042, lng: 116.4074, label: 'Beijing' } },
+      { start: { lat: -15.7801, lng: -47.9292, label: 'Brasília' }, end: { lat: 51.5074, lng: -0.1278, label: 'London' } },
     ],
     regions: {
-      pt: ['Guiana Inglesa', 'Georgetown', 'América do Sul', 'Caribe'],
-      en: ['British Guiana', 'Georgetown', 'South America', 'Caribbean'],
+      pt: ['Brasil', 'América do Sul', 'América do Norte', 'Europa', 'Ásia'],
+      en: ['Brazil', 'South America', 'North America', 'Europe', 'Asia'],
     },
     gallery: [
-      'https://images.unsplash.com/photo-1588347818036-4b2596a9b193?w=800&q=80',
-      'https://images.unsplash.com/photo-1607623488235-febe26925e6f?w=800&q=80',
-      'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80',
-      'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80',
+      'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80',
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80',
+      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80',
+      'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80',
     ],
   },
 
@@ -442,17 +444,17 @@ export const segmentsData: Record<string, SegmentData> = {
     },
     partners: ['conecta-cargas'],
   },
-  'slaughterhouse': {
-    id: 'slaughterhouse',
+  'agribusiness': {
+    id: 'agribusiness',
     name: {
-      pt: 'Frigorífico Bovino',
-      en: 'Cattle Slaughterhouse',
+      pt: 'Comodities',
+      en: 'Commodities',
     },
     description: {
-      pt: 'Processamento de carne bovina com padrões internacionais de qualidade e sustentabilidade.',
-      en: 'Beef processing with international quality and sustainability standards.',
+      pt: 'Comercialização e trading de commodities agrícolas com presença nos mercados globais.',
+      en: 'Agricultural commodity trading and commercialization with presence in global markets.',
     },
-    partners: ['glda-ruminant'],
+    partners: ['tbpar-agrobusiness'],
   },
   'earthmoving': {
     id: 'earthmoving',

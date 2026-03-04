@@ -26,7 +26,7 @@ const PartnerDetail = () => {
     observacoes: ''
   });
   const formContainerRef = useRef<HTMLDivElement>(null);
-  
+
   // Buscar dados da empresa
   const partner = partnerId ? partnersData[partnerId] : null;
 
@@ -40,14 +40,14 @@ const PartnerDetail = () => {
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
-      
+
       // Scroll para o topo do formulário após um pequeno delay para garantir que o DOM foi atualizado
       setTimeout(() => {
         if (formContainerRef.current) {
           formContainerRef.current.scrollTop = 0;
         }
       }, 300);
-      
+
       return () => {
         // Reabilitar scroll quando o formulário fechar
         document.body.style.overflow = '';
@@ -64,10 +64,10 @@ const PartnerDetail = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validação básica
     if (!formData.marca || !formData.nome || !formData.email || !formData.telefone || !formData.cpfCnpj) {
-      alert(language === 'pt' 
+      alert(language === 'pt'
         ? 'Por favor, preencha todos os campos obrigatórios.'
         : 'Please fill in all required fields.'
       );
@@ -75,18 +75,18 @@ const PartnerDetail = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       // Enviar para Google Sheets
       const formattedData = formatTrademarkData(formData);
       const result = await submitToGoogleSheets(formattedData);
-      
+
       if (result.success) {
-        alert(language === 'pt' 
+        alert(language === 'pt'
           ? 'Formulário enviado com sucesso! Entraremos em contato em breve.'
           : 'Form submitted successfully! We will contact you soon.'
         );
-        
+
         // Limpar formulário e fechar
         setFormData({
           marca: '',
@@ -104,7 +104,7 @@ const PartnerDetail = () => {
       }
     } catch (error) {
       console.error('Erro ao enviar formulário:', error);
-      alert(language === 'pt' 
+      alert(language === 'pt'
         ? 'Erro ao enviar formulário. Por favor, tente novamente.'
         : 'Error submitting form. Please try again.'
       );
@@ -160,8 +160,8 @@ const PartnerDetail = () => {
               {partner.logo && (
                 <div className="flex-shrink-0 flex items-center justify-center md:justify-end md:ml-auto order-first md:order-last">
                   <div className="w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 flex items-center justify-center">
-                    <img 
-                      src={partner.logo} 
+                    <img
+                      src={partner.logo}
                       alt={partner.name}
                       className="w-full h-full object-contain"
                     />
@@ -236,7 +236,7 @@ const PartnerDetail = () => {
                 {language === 'pt' ? 'Presença Global' : 'Global Presence'}
               </h2>
               <p className="text-muted-foreground">
-                {language === 'pt' 
+                {language === 'pt'
                   ? 'Nossa atuação estratégica em diferentes regiões'
                   : 'Our strategic presence in different regions'}
               </p>
@@ -298,7 +298,7 @@ const PartnerDetail = () => {
                     {language === 'pt' ? 'Nossos Serviços' : 'Our Services'}
                   </h2>
                   <p className="text-muted-foreground">
-                    {language === 'pt' 
+                    {language === 'pt'
                       ? 'Soluções financeiras completas e personalizadas para empresas e indivíduos'
                       : 'Complete and personalized financial solutions for companies and individuals'}
                   </p>
@@ -319,7 +319,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <CreditCard className="w-6 h-6 text-foreground" />
@@ -351,7 +351,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <Building2 className="w-6 h-6 text-foreground" />
@@ -383,7 +383,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <TrendingUp className="w-6 h-6 text-foreground" />
@@ -415,7 +415,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <FileText className="w-6 h-6 text-foreground" />
@@ -487,7 +487,7 @@ const PartnerDetail = () => {
                     {language === 'pt' ? 'Nossas Atividades' : 'Our Activities'}
                   </h2>
                   <p className="text-muted-foreground">
-                    {language === 'pt' 
+                    {language === 'pt'
                       ? 'Serviços especializados em terraplanagem, obras pesadas e soluções agrícolas integradas'
                       : 'Specialized services in earthmoving, heavy construction and integrated agricultural solutions'}
                   </p>
@@ -508,7 +508,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <Truck className="w-6 h-6 text-foreground" />
@@ -540,7 +540,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <Hammer className="w-6 h-6 text-foreground" />
@@ -572,7 +572,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <ClipboardCheck className="w-6 h-6 text-foreground" />
@@ -604,7 +604,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <TreePine className="w-6 h-6 text-foreground" />
@@ -636,7 +636,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <Leaf className="w-6 h-6 text-foreground" />
@@ -668,7 +668,7 @@ const PartnerDetail = () => {
                       <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                        
+
                         <div className="relative z-10">
                           <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
                             <Wrench className="w-6 h-6 text-foreground" />
@@ -741,7 +741,7 @@ const PartnerDetail = () => {
                   </h2>
                 </div>
                 <p className="text-muted-foreground">
-                  {language === 'pt' 
+                  {language === 'pt'
                     ? 'Nossa estratégia de crescimento internacional planejada'
                     : 'Our planned international growth strategy'}
                 </p>
@@ -762,7 +762,7 @@ const PartnerDetail = () => {
                     <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative z-10 flex-1">
                         <h3 className="text-xl font-medium text-foreground mb-1">
                           {language === 'pt' ? 'Brasil' : 'Brazil'}
@@ -791,7 +791,7 @@ const PartnerDetail = () => {
                     <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative z-10 flex-1">
                         <h3 className="text-xl font-medium text-foreground mb-1">
                           {language === 'pt' ? 'Paraguai / Argentina / Chile' : 'Paraguay / Argentina / Chile'}
@@ -820,7 +820,7 @@ const PartnerDetail = () => {
                     <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative z-10 flex-1">
                         <h3 className="text-xl font-medium text-foreground mb-1">
                           {language === 'pt' ? 'EUA' : 'USA'}
@@ -849,7 +849,7 @@ const PartnerDetail = () => {
                     <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                      
+
                       <div className="relative z-10 flex-1">
                         <h3 className="text-xl font-medium text-foreground mb-1">
                           {language === 'pt' ? 'Eurásia' : 'Eurasia'}
@@ -867,6 +867,191 @@ const PartnerDetail = () => {
             </div>
           </div>
         </section>
+      )}
+
+      {/* TB PAR Agrobusiness Services Section */}
+      {partner.id === 'tbpar-agrobusiness' && (
+        <>
+          {/* Services Cards */}
+          <section className="py-16">
+            <div className="container mx-auto px-6 lg:px-12">
+              <div className="max-w-5xl mx-auto">
+                <div className="text-center mb-12">
+                  <h2 className="text-2xl md:text-3xl font-light tracking-tight text-foreground mb-4">
+                    {language === 'pt' ? 'Nossas Operações' : 'Our Operations'}
+                  </h2>
+                  <p className="text-muted-foreground">
+                    {language === 'pt'
+                      ? 'Soluções completas em trading e comercialização de commodities agrícolas'
+                      : 'Complete solutions in agricultural commodity trading and commercialization'}
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                  {/* Comercialização de Commodities */}
+                  <div className="group">
+                    <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                      <GlowingEffect
+                        spread={50}
+                        glow={true}
+                        disabled={false}
+                        proximity={0}
+                        inactiveZone={0}
+                        borderWidth={2}
+                      />
+                      <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                            <Leaf className="w-6 h-6 text-foreground" />
+                          </div>
+                          <h3 className="text-xl font-medium text-foreground mb-2">
+                            {language === 'pt' ? 'Comercialização de Commodities' : 'Commodity Commercialization'}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {language === 'pt'
+                              ? 'Compra e venda de grãos, cereais, oleaginosas e insumos agropecuários nos principais mercados nacionais.'
+                              : 'Purchase and sale of grains, cereals, oilseeds and agricultural inputs in the main national markets.'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Trading Internacional */}
+                  <div className="group">
+                    <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                      <GlowingEffect
+                        spread={50}
+                        glow={true}
+                        disabled={false}
+                        proximity={0}
+                        inactiveZone={0}
+                        borderWidth={2}
+                      />
+                      <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                            <Globe className="w-6 h-6 text-foreground" />
+                          </div>
+                          <h3 className="text-xl font-medium text-foreground mb-2">
+                            {language === 'pt' ? 'Trading Internacional' : 'International Trading'}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {language === 'pt'
+                              ? 'Exportação e importação de produtos agrícolas conectando produtores brasileiros a mercados globais na Europa, Ásia e Américas.'
+                              : 'Export and import of agricultural products connecting Brazilian producers to global markets in Europe, Asia and the Americas.'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Consultoria Agronômica */}
+                  <div className="group">
+                    <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                      <GlowingEffect
+                        spread={50}
+                        glow={true}
+                        disabled={false}
+                        proximity={0}
+                        inactiveZone={0}
+                        borderWidth={2}
+                      />
+                      <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                            <TreePine className="w-6 h-6 text-foreground" />
+                          </div>
+                          <h3 className="text-xl font-medium text-foreground mb-2">
+                            {language === 'pt' ? 'Consultoria Agronômica' : 'Agronomic Consulting'}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {language === 'pt'
+                              ? 'Análise de mercado, precificação estratégica e consultoria logística para maximizar a rentabilidade da cadeia produtiva.'
+                              : 'Market analysis, strategic pricing and logistics consulting to maximize the profitability of the production chain.'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Gestão de Risco */}
+                  <div className="group">
+                    <div className="relative h-full rounded-[1.5rem] border-[0.75px] border-border/50 p-2.5 transition-all duration-500 hover:border-border">
+                      <GlowingEffect
+                        spread={50}
+                        glow={true}
+                        disabled={false}
+                        proximity={0}
+                        inactiveZone={0}
+                        borderWidth={2}
+                      />
+                      <div className="relative flex flex-col gap-4 overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl p-6 shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                        <div className="relative z-10">
+                          <div className="p-3 rounded-lg bg-foreground/5 mb-4 w-fit">
+                            <TrendingUp className="w-6 h-6 text-foreground" />
+                          </div>
+                          <h3 className="text-xl font-medium text-foreground mb-2">
+                            {language === 'pt' ? 'Gestão de Risco' : 'Risk Management'}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {language === 'pt'
+                              ? 'Hedge, contratos futuros e instrumentos de proteção de preço para garantir segurança e previsibilidade nas operações.'
+                              : 'Hedging, futures contracts and price protection instruments to ensure safety and predictability in operations.'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* KPIs Marquee Section */}
+          <section className="py-8 bg-background border-y border-border/50">
+            <Marquee className="[--duration:30s]" enableDrag>
+              <div className="flex items-center gap-3 mx-8">
+                <span className="text-3xl font-light text-foreground">+5</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                  {language === 'pt' ? 'Continentes Atendidos' : 'Continents Served'}
+                </span>
+              </div>
+              <div className="flex items-center gap-3 mx-8">
+                <span className="text-3xl font-light text-foreground">+20</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                  {language === 'pt' ? 'Países de Atuação' : 'Countries of Operation'}
+                </span>
+              </div>
+              <div className="flex items-center gap-3 mx-8">
+                <span className="text-3xl font-light text-foreground">+100k</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                  {language === 'pt' ? 'Toneladas Comercializadas' : 'Tonnes Traded'}
+                </span>
+              </div>
+              <div className="flex items-center gap-3 mx-8">
+                <span className="text-3xl font-light text-foreground">98%</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                  {language === 'pt' ? 'Entregas no Prazo' : 'On-Time Deliveries'}
+                </span>
+              </div>
+              <div className="flex items-center gap-3 mx-8">
+                <span className="text-3xl font-light text-foreground">+50</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                  {language === 'pt' ? 'Parceiros Produtores' : 'Producer Partners'}
+                </span>
+              </div>
+            </Marquee>
+          </section>
+        </>
       )}
 
       {/* Gallery Section */}
@@ -889,12 +1074,12 @@ const PartnerDetail = () => {
                   </div>
                 ))}
               </div>
-              
+
               {/* MT Concept Button */}
               {partner.id === 'mt-concept' && (
                 <div className="flex justify-center mt-12">
-                  <GlassButton 
-                    href="/empreendimentos" 
+                  <GlassButton
+                    href="/empreendimentos"
                     size="lg"
                     contentClassName="flex items-center gap-2.5"
                   >
@@ -932,7 +1117,7 @@ const PartnerDetail = () => {
                   });
                 }}
               />
-              
+
               {/* Container do Modal - Fixo no centro da viewport */}
               <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 pointer-events-none">
                 <div
@@ -945,203 +1130,203 @@ const PartnerDetail = () => {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="p-6 md:p-8 lg:p-12">
-                <div className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
-                  {language === 'pt' ? 'Formulário de Registro de Marca' : 'Trademark Registration Form'}
-                </h2>
-                <p className="text-muted-foreground">
-                  {language === 'pt'
-                    ? 'Todos os campos são obrigatórios para garantir um processo eficiente'
-                    : 'All fields are required to ensure an efficient process'}
-                </p>
-              </div>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Dados da Marca */}
-                <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-foreground border-b border-border pb-2">
-                    {language === 'pt' ? 'Dados da Marca' : 'Trademark Information'}
-                  </h4>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="marca" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'Nome da Marca' : 'Trademark Name'} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="marca"
-                        required
-                        value={formData.marca}
-                        onChange={(e) => setFormData({ ...formData, marca: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? 'Digite o nome da marca' : 'Enter trademark name'}
-                      />
+                    <div className="mb-12 text-center">
+                      <h2 className="text-3xl md:text-4xl font-light text-foreground mb-4">
+                        {language === 'pt' ? 'Formulário de Registro de Marca' : 'Trademark Registration Form'}
+                      </h2>
+                      <p className="text-muted-foreground">
+                        {language === 'pt'
+                          ? 'Todos os campos são obrigatórios para garantir um processo eficiente'
+                          : 'All fields are required to ensure an efficient process'}
+                      </p>
                     </div>
 
-                    <div>
-                      <label htmlFor="classe" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'Classe de Produtos/Serviços (INPI)' : 'Product/Service Class (INPI)'}
-                      </label>
-                      <input
-                        type="text"
-                        id="classe"
-                        value={formData.classe}
-                        onChange={(e) => setFormData({ ...formData, classe: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? 'Ex: Classe 25 (Vestuário)' : 'Ex: Class 25 (Clothing)'}
-                      />
-                    </div>
-                  </div>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      {/* Dados da Marca */}
+                      <div className="space-y-4">
+                        <h4 className="text-sm font-medium text-foreground border-b border-border pb-2">
+                          {language === 'pt' ? 'Dados da Marca' : 'Trademark Information'}
+                        </h4>
 
-                  <div>
-                    <label htmlFor="descricao" className="block text-sm font-medium text-foreground mb-2">
-                      {language === 'pt' ? 'Descrição da Marca' : 'Trademark Description'}
-                    </label>
-                    <textarea
-                      id="descricao"
-                      value={formData.descricao}
-                      onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
-                      rows={3}
-                      className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all resize-none"
-                      placeholder={language === 'pt' ? 'Descreva a marca e seus produtos/serviços' : 'Describe the trademark and its products/services'}
-                    />
-                  </div>
-                </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="marca" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'Nome da Marca' : 'Trademark Name'} <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="marca"
+                              required
+                              value={formData.marca}
+                              onChange={(e) => setFormData({ ...formData, marca: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? 'Digite o nome da marca' : 'Enter trademark name'}
+                            />
+                          </div>
 
-                {/* Dados do Solicitante */}
-                <div className="space-y-4">
-                  <h4 className="text-sm font-medium text-foreground border-b border-border pb-2">
-                    {language === 'pt' ? 'Dados do Solicitante' : 'Applicant Information'}
-                  </h4>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="nome" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'Nome Completo / Razão Social' : 'Full Name / Company Name'} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="nome"
-                        required
-                        value={formData.nome}
-                        onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? 'Nome ou razão social' : 'Name or company name'}
-                      />
-                    </div>
+                          <div>
+                            <label htmlFor="classe" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'Classe de Produtos/Serviços (INPI)' : 'Product/Service Class (INPI)'}
+                            </label>
+                            <input
+                              type="text"
+                              id="classe"
+                              value={formData.classe}
+                              onChange={(e) => setFormData({ ...formData, classe: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? 'Ex: Classe 25 (Vestuário)' : 'Ex: Class 25 (Clothing)'}
+                            />
+                          </div>
+                        </div>
 
-                    <div>
-                      <label htmlFor="cpfCnpj" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'CPF / CNPJ' : 'CPF / CNPJ'} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="cpfCnpj"
-                        required
-                        value={formData.cpfCnpj}
-                        onChange={(e) => setFormData({ ...formData, cpfCnpj: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? '000.000.000-00 ou 00.000.000/0000-00' : '000.000.000-00 or 00.000.000/0000-00'}
-                      />
-                    </div>
-                  </div>
+                        <div>
+                          <label htmlFor="descricao" className="block text-sm font-medium text-foreground mb-2">
+                            {language === 'pt' ? 'Descrição da Marca' : 'Trademark Description'}
+                          </label>
+                          <textarea
+                            id="descricao"
+                            value={formData.descricao}
+                            onChange={(e) => setFormData({ ...formData, descricao: e.target.value })}
+                            rows={3}
+                            className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all resize-none"
+                            placeholder={language === 'pt' ? 'Descreva a marca e seus produtos/serviços' : 'Describe the trademark and its products/services'}
+                          />
+                        </div>
+                      </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'E-mail' : 'Email'} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? 'seu@email.com' : 'your@email.com'}
-                      />
-                    </div>
+                      {/* Dados do Solicitante */}
+                      <div className="space-y-4">
+                        <h4 className="text-sm font-medium text-foreground border-b border-border pb-2">
+                          {language === 'pt' ? 'Dados do Solicitante' : 'Applicant Information'}
+                        </h4>
 
-                    <div>
-                      <label htmlFor="telefone" className="block text-sm font-medium text-foreground mb-2">
-                        {language === 'pt' ? 'Telefone' : 'Phone'} <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="telefone"
-                        required
-                        value={formData.telefone}
-                        onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
-                        placeholder={language === 'pt' ? '(00) 00000-0000' : '(00) 00000-0000'}
-                      />
-                    </div>
-                  </div>
-                </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="nome" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'Nome Completo / Razão Social' : 'Full Name / Company Name'} <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="nome"
+                              required
+                              value={formData.nome}
+                              onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? 'Nome ou razão social' : 'Name or company name'}
+                            />
+                          </div>
 
-                {/* Observações */}
-                <div>
-                  <label htmlFor="observacoes" className="block text-sm font-medium text-foreground mb-2">
-                    {language === 'pt' ? 'Observações Adicionais' : 'Additional Notes'}
-                  </label>
-                  <textarea
-                    id="observacoes"
-                    value={formData.observacoes}
-                    onChange={(e) => setFormData({ ...formData, observacoes: e.target.value })}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all resize-none"
-                    placeholder={language === 'pt' ? 'Informações adicionais que possam ser relevantes' : 'Additional information that may be relevant'}
-                  />
-                </div>
+                          <div>
+                            <label htmlFor="cpfCnpj" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'CPF / CNPJ' : 'CPF / CNPJ'} <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="cpfCnpj"
+                              required
+                              value={formData.cpfCnpj}
+                              onChange={(e) => setFormData({ ...formData, cpfCnpj: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? '000.000.000-00 ou 00.000.000/0000-00' : '000.000.000-00 or 00.000.000/0000-00'}
+                            />
+                          </div>
+                        </div>
 
-                {/* Botões */}
-                <div className="flex gap-4 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsTrademarkModalOpen(false);
-                      setFormData({
-                        marca: '',
-                        descricao: '',
-                        classe: '',
-                        nome: '',
-                        email: '',
-                        telefone: '',
-                        cpfCnpj: '',
-                        observacoes: ''
-                      });
-                    }}
-                    disabled={isSubmitting}
-                    className="flex-1 px-6 py-3 rounded-lg border border-border bg-transparent text-foreground hover:bg-foreground/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {language === 'pt' ? 'Cancelar' : 'Cancel'}
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 px-6 py-3 rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span>{language === 'pt' ? 'Enviando...' : 'Sending...'}</span>
-                      </>
-                    ) : (
-                      <span>{language === 'pt' ? 'Enviar Solicitação' : 'Submit Request'}</span>
-                    )}
-                  </button>
-                </div>
-              </form>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'E-mail' : 'Email'} <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="email"
+                              id="email"
+                              required
+                              value={formData.email}
+                              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? 'seu@email.com' : 'your@email.com'}
+                            />
+                          </div>
+
+                          <div>
+                            <label htmlFor="telefone" className="block text-sm font-medium text-foreground mb-2">
+                              {language === 'pt' ? 'Telefone' : 'Phone'} <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="tel"
+                              id="telefone"
+                              required
+                              value={formData.telefone}
+                              onChange={(e) => setFormData({ ...formData, telefone: e.target.value })}
+                              className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all"
+                              placeholder={language === 'pt' ? '(00) 00000-0000' : '(00) 00000-0000'}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Observações */}
+                      <div>
+                        <label htmlFor="observacoes" className="block text-sm font-medium text-foreground mb-2">
+                          {language === 'pt' ? 'Observações Adicionais' : 'Additional Notes'}
+                        </label>
+                        <textarea
+                          id="observacoes"
+                          value={formData.observacoes}
+                          onChange={(e) => setFormData({ ...formData, observacoes: e.target.value })}
+                          rows={4}
+                          className="w-full px-4 py-3 rounded-lg bg-card border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 transition-all resize-none"
+                          placeholder={language === 'pt' ? 'Informações adicionais que possam ser relevantes' : 'Additional information that may be relevant'}
+                        />
+                      </div>
+
+                      {/* Botões */}
+                      <div className="flex gap-4 pt-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsTrademarkModalOpen(false);
+                            setFormData({
+                              marca: '',
+                              descricao: '',
+                              classe: '',
+                              nome: '',
+                              email: '',
+                              telefone: '',
+                              cpfCnpj: '',
+                              observacoes: ''
+                            });
+                          }}
+                          disabled={isSubmitting}
+                          className="flex-1 px-6 py-3 rounded-lg border border-border bg-transparent text-foreground hover:bg-foreground/5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {language === 'pt' ? 'Cancelar' : 'Cancel'}
+                        </button>
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="flex-1 px-6 py-3 rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              <span>{language === 'pt' ? 'Enviando...' : 'Sending...'}</span>
+                            </>
+                          ) : (
+                            <span>{language === 'pt' ? 'Enviar Solicitação' : 'Submit Request'}</span>
+                          )}
+                        </button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </>
           )}
-          
+
           <div className="relative flex flex-col items-center gap-12 w-full max-w-4xl z-10">
 
             {/* Status disponível */}
@@ -1219,8 +1404,8 @@ const PartnerDetail = () => {
                       transform: isTrademarkModalOpen
                         ? "translate(100px, -100px) scale(0.5)"
                         : isHovered
-                            ? "translate(2px, -2px)"
-                            : "translate(0, 0)",
+                          ? "translate(2px, -2px)"
+                          : "translate(0, 0)",
                       opacity: isTrademarkModalOpen ? 0 : 1,
                       color: isHovered && !isTrademarkModalOpen ? "var(--background)" : "var(--foreground)",
                       transitionDuration: isTrademarkModalOpen ? "600ms" : "500ms",
@@ -1259,7 +1444,7 @@ const PartnerDetail = () => {
               }}
             >
               <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                {language === 'pt' 
+                {language === 'pt'
                   ? 'Preencha o formulário e nossa equipe entrará em contato para iniciar o processo de registro'
                   : 'Fill out the form and our team will contact you to start the registration process'}
               </p>
@@ -1277,19 +1462,19 @@ const PartnerDetail = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-foreground/5 mb-4">
                 <Globe className="w-6 h-6 text-foreground" />
               </div>
-              
+
               {/* Title */}
               <h3 className="text-2xl font-light tracking-tight text-foreground mb-2">
                 {language === 'pt' ? 'Conheça mais sobre' : 'Learn more about'} {partner.name}
               </h3>
-              
+
               {/* Subtitle */}
               <p className="text-sm text-muted-foreground mb-8">
-                {language === 'pt' 
+                {language === 'pt'
                   ? 'Visite o site oficial para mais informações, produtos e serviços'
                   : 'Visit the official website for more information, products and services'}
               </p>
-              
+
               {/* Button */}
               <a
                 href={partner.externalLink}

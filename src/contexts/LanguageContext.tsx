@@ -94,7 +94,7 @@ const translations: Translations = {
   // About - Storytelling
   'about.founded': { pt: 'Criada em 2018', en: 'Founded in 2018' },
   'about.journey': { pt: 'Nossa Jornada', en: 'Our Journey' },
-  
+
   'about.story.chapter1': { pt: 'Início da jornada com foco em investimentos estratégicos e geração de valor.', en: 'Beginning of the journey focused on strategic investments and value creation.' },
   'about.story.chapter1.title': { pt: 'Fundação', en: 'Foundation' },
   'about.story.chapter1.period': { pt: '2018', en: '2018' },
@@ -166,7 +166,7 @@ const translations: Translations = {
   'gallery.category.pavilhao': { pt: 'Pavilhões', en: 'Warehouses' },
   'gallery.category.distribuidora': { pt: 'Distribuidoras de carne', en: 'Meat Distributors' },
   'gallery.category.escritorio': { pt: 'Escritórios', en: 'Offices' },
-  
+
   // Common
   'common.learnmore': { pt: 'Saiba mais', en: 'Learn more' },
 
