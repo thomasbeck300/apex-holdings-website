@@ -1548,6 +1548,13 @@ const PartnerDetail = () => {
                   ? 'Entre em contato e descubra como podemos impulsionar sua marca'
                   : 'Get in touch and discover how we can boost your brand'}
               </p>
+              <button
+                onClick={() => window.location.href = 'mailto:contato@agenciaseven.com.br'}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 text-sm font-medium"
+              >
+                {language === 'pt' ? 'Enviar E-mail' : 'Send Email'}
+                <ExternalLink className="w-4 h-4" />
+              </button>
               <span className="text-xs tracking-widest uppercase text-muted-foreground/60">
                 contato@agenciaseven.com.br
               </span>
