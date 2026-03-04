@@ -27,24 +27,24 @@ const Home = () => {
   // Projects images organized by category
   const projectsByCategory = {
     frigorifico: [
-      'https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=800&q=80',
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
-      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80',
+      'https://images.unsplash.com/photo-1533991022833-ad47ac91974e?w=1000&q=80',
+      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&q=80',
+      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&q=80',
     ],
     pavilhao: [
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
+      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80', // bvQwZ85JBSg (Warehouse)
+      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&q=80', // FB7QTOXs6q0 (Modern building)
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80', // yggPEMypLUI (Sleek architecture)
     ],
     distribuidora: [
-      'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80',
-      'https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?w=800&q=80',
-      'https://images.unsplash.com/photo-1582653291997-079a1c04e5a1?w=800&q=80',
+      'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=1000&q=80', // -rmA0xZAdhY (Cold storage)
+      'https://images.unsplash.com/photo-1519003722824-192d992a6059?w=1000&q=80', // fS1RwhY3Ytk (Industrial facility)
+      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80', // Valid logistics hub
     ],
     escritorio: [
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80',
-      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80',
-      'https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=800&q=80',
+      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1000&q=80',
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&q=80',
+      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1000&q=80',
     ],
   };
 
@@ -130,7 +130,7 @@ const Home = () => {
           className="hidden md:block absolute -top-[10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-0"
           style={{ backgroundImage: 'url(/imgs/cavalo-bg.webp)' }}
         />
-        
+
         {/* Background Image - Mobile */}
         <div
           className="md:hidden absolute -top-[10%] left-0 w-full h-[120%] bg-cover bg-center bg-no-repeat z-0"
@@ -157,8 +157,8 @@ const Home = () => {
                 {t('hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row gap-5 items-start sm:items-center">
-                <GlassButton 
-                  href="/contact" 
+                <GlassButton
+                  href="/contact"
                   size="lg"
                   contentClassName="flex items-center gap-2.5"
                 >
@@ -324,7 +324,7 @@ const Home = () => {
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   {/* Number badge on hover */}
                   <div className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-background/90 backdrop-blur-sm text-sm font-medium text-foreground opacity-0 group-hover:opacity-100 transition-all duration-300 scale-90 group-hover:scale-100">
                     {index + 1}

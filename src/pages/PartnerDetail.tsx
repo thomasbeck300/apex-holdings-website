@@ -869,7 +869,7 @@ const PartnerDetail = () => {
         </section>
       )}
 
-      {/* TB PAR Agrobusiness Services Section */}
+      {/* TBPAR Agrobusiness Services Section */}
       {partner.id === 'tbpar-agrobusiness' && (
         <>
           {/* Services Cards */}

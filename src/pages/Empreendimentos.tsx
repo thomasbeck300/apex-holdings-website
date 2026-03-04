@@ -10,41 +10,41 @@ const Empreendimentos = () => {
 
   // Dados de exemplo para as galerias - você pode substituir por dados reais
   const empreendimentosImages = [
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80',
-    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80',
+    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80',
+    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1000&q=80',
+    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1000&q=80',
+    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1000&q=80',
   ];
 
   const lancamentosImages = [
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
-    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80',
-    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
-    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=80',
   ];
 
   const vendasImages = [
-    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80',
-    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
-    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80',
-    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80',
-    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&q=80',
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1000&q=80',
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80',
   ];
 
-  const GallerySection = ({ 
-    title, 
-    icon: Icon, 
-    images, 
-    description 
-  }: { 
-    title: string; 
-    icon: typeof Building2; 
-    images: string[]; 
+  const GallerySection = ({
+    title,
+    icon: Icon,
+    images,
+    description
+  }: {
+    title: string;
+    icon: typeof Building2;
+    images: string[];
     description: string;
   }) => (
     <section className="py-16">
@@ -86,7 +86,7 @@ const Empreendimentos = () => {
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl border-[0.75px] border-border/30 bg-gradient-to-br from-card/95 to-card/80 backdrop-blur-xl shadow-[0px_0px_27px_0px_rgba(0,0,0,0.5)] transition-shadow duration-500 group-hover:shadow-[0px_0px_40px_0px_rgba(255,255,255,0.1)]">
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                    
+
                     <img
                       src={image}
                       alt={`${title} ${index + 1}`}
@@ -157,7 +157,7 @@ const Empreendimentos = () => {
         title={language === 'pt' ? 'Empreendimentos' : 'Developments'}
         icon={Building2}
         images={empreendimentosImages}
-        description={language === 'pt' 
+        description={language === 'pt'
           ? 'Nossos projetos concluídos e em andamento'
           : 'Our completed and ongoing projects'}
       />
@@ -167,7 +167,7 @@ const Empreendimentos = () => {
         title={language === 'pt' ? 'Lançamentos' : 'Launches'}
         icon={Sparkles}
         images={lancamentosImages}
-        description={language === 'pt' 
+        description={language === 'pt'
           ? 'Novos projetos disponíveis para investimento'
           : 'New projects available for investment'}
       />
@@ -177,7 +177,7 @@ const Empreendimentos = () => {
         title={language === 'pt' ? 'Vendas' : 'Sales'}
         icon={TrendingUp}
         images={vendasImages}
-        description={language === 'pt' 
+        description={language === 'pt'
           ? 'Oportunidades de compra e investimento'
           : 'Purchase and investment opportunities'}
       />
