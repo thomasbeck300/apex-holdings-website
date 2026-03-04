@@ -1453,6 +1453,109 @@ const PartnerDetail = () => {
         </section>
       )}
 
+      {/* Seven – Contact CTA */}
+      {partner.id === 'seven-marketing' && (
+        <section className="flex min-h-[60vh] items-center justify-center px-6 py-20 relative">
+          <div className="relative flex flex-col items-center gap-12 w-full max-w-4xl z-10">
+
+            {/* Status disponível */}
+            <div className="flex items-center gap-3">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+              </span>
+              <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+                {language === 'pt' ? 'Disponível para novos projetos' : 'Available for new projects'}
+              </span>
+            </div>
+
+            {/* Texto clicável com animação */}
+            <div
+              className="group relative cursor-pointer"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={() => window.location.href = 'mailto:contato@agenciaseven.com.br'}
+            >
+              <div className="flex flex-col items-center gap-6">
+                <h2
+                  className="relative text-center text-5xl font-light tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                >
+                  <span className="block overflow-hidden">
+                    <span
+                      className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                      style={{ transform: isHovered ? 'translateY(-8%)' : 'translateY(0)' }}
+                    >
+                      {language === 'pt' ? 'Vamos' : 'Let\'s'}
+                    </span>
+                  </span>
+                  <span className="block overflow-hidden">
+                    <span
+                      className="block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75"
+                      style={{ transform: isHovered ? 'translateY(-8%)' : 'translateY(0)' }}
+                    >
+                      <span className="text-muted-foreground/60">
+                        {language === 'pt' ? 'trabalhar juntos' : 'work together'}
+                      </span>
+                    </span>
+                  </span>
+                </h2>
+
+                <div className="relative mt-4 flex size-16 items-center justify-center sm:size-20">
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-full border transition-all ease-out"
+                    style={{
+                      borderColor: isHovered ? 'var(--foreground)' : 'var(--border)',
+                      backgroundColor: isHovered ? 'var(--foreground)' : 'transparent',
+                      transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                      transitionDuration: '500ms',
+                    }}
+                  />
+                  <ArrowUpRight
+                    className="size-6 transition-all ease-[cubic-bezier(0.16,1,0.3,1)] sm:size-7"
+                    style={{
+                      transform: isHovered ? 'translate(2px, -2px)' : 'translate(0, 0)',
+                      color: isHovered ? 'var(--background)' : 'var(--foreground)',
+                      transitionDuration: '500ms',
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="absolute -left-8 top-1/2 -translate-y-1/2 sm:-left-16">
+                <div
+                  className="h-px w-8 bg-border transition-all duration-500 sm:w-12"
+                  style={{
+                    transform: isHovered ? 'scaleX(1.5)' : 'scaleX(1)',
+                    opacity: isHovered ? 1 : 0.5,
+                  }}
+                />
+              </div>
+              <div className="absolute -right-8 top-1/2 -translate-y-1/2 sm:-right-16">
+                <div
+                  className="h-px w-8 bg-border transition-all duration-500 sm:w-12"
+                  style={{
+                    transform: isHovered ? 'scaleX(1.5)' : 'scaleX(1)',
+                    opacity: isHovered ? 1 : 0.5,
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="mt-8 flex flex-col items-center gap-4 text-center">
+              <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                {language === 'pt'
+                  ? 'Entre em contato e descubra como podemos impulsionar sua marca'
+                  : 'Get in touch and discover how we can boost your brand'}
+              </p>
+              <span className="text-xs tracking-widest uppercase text-muted-foreground/60">
+                contato@agenciaseven.com.br
+              </span>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* External Link CTA */}
       {partner.externalLink && (
         <section className="py-16 bg-secondary/30">

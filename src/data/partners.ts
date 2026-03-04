@@ -123,7 +123,7 @@ export const partnersData: Record<string, PartnerData> = {
       'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
       'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
     ],
-    isSubdomain: true,
+    externalLink: 'https://www.imapmarcas.com.br',
   },
 
   'seven-marketing': {

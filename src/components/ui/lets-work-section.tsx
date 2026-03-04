@@ -24,7 +24,7 @@ export function LetsWorkTogether() {
     }
 
     const handleBookCall = () => {
-        window.location.href = "mailto:contato@holdinggroup.com"
+        window.location.href = "mailto:contato@tbpar.com.br"
     }
 
     return (
@@ -140,7 +140,7 @@ export function LetsWorkTogether() {
                             transitionDelay: "450ms",
                         }}
                     >
-                        contato@holdinggroup.com
+                        contato@tbpar.com.br
                     </span>
                 </div>
 
@@ -258,7 +258,7 @@ export function LetsWorkTogether() {
                     <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
                         {t('contact.work.description')}
                     </p>
-                    <span className="text-xs tracking-widest uppercase text-muted-foreground/60">contato@holdinggroup.com</span>
+                    <span className="text-xs tracking-widest uppercase text-muted-foreground/60">contato@tbpar.com.br</span>
                 </div>
             </div>
         </section>
