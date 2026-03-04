@@ -162,7 +162,7 @@ const translations: Translations = {
   // Gallery / Projects
   'gallery.title': { pt: 'Projetos', en: 'Projects' },
   'gallery.delivered': { pt: 'Projetos Entregues', en: 'Delivered Projects' },
-  'gallery.category.frigorifico': { pt: 'Frigoríficos', en: 'Cold Storage' },
+  'gallery.category.frigorifico': { pt: 'Comodities', en: 'Comodities' },
   'gallery.category.pavilhao': { pt: 'Pavilhões', en: 'Warehouses' },
   'gallery.category.distribuidora': { pt: 'Distribuidoras de carne', en: 'Meat Distributors' },
   'gallery.category.escritorio': { pt: 'Escritórios', en: 'Offices' },
