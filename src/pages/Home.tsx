@@ -10,7 +10,6 @@ import { AnimatedText } from '@/components/ui/animated-text';
 import { BlurTextAnimation } from '@/components/ui/blur-text-animation';
 import { AnimatedUnderline } from '@/components/ui/animated-underline';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
-import { TestimonialSlider } from '@/components/ui/testimonial-slider';
 import { AnimatedCTASection } from '@/components/ui/animated-cta-section';
 import { Marquee } from '@/components/ui/marquee';
 import { Testimonials3D } from '@/components/ui/testimonials-3d';
@@ -56,17 +55,6 @@ const Home = () => {
     ...projectsByCategory.escritorio,
   ];
 
-  // Team member data
-  const testimonials = [
-    {
-      id: 1,
-      name: t('team.thomas.name'),
-      affiliation: t('team.thomas.role'),
-      quote: t('team.thomas.quote'),
-      imageSrc: "/imgs/thomas.webp",
-      thumbnailSrc: "/imgs/thomas.webp",
-    },
-  ];
 
   // Global presence connections
   const globalConnections = [
@@ -378,20 +366,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-light tracking-tight text-foreground mb-4">
-              {t('home.team.title')}
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              {t('home.team.subtitle')}
-            </p>
-          </div>
-          <TestimonialSlider reviews={testimonials} />
-        </div>
-      </section>
 
       {/* Marquee Stats Section */}
       <section className="py-8 bg-background border-y border-border/50">
