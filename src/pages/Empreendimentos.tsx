@@ -10,30 +10,29 @@ const Empreendimentos = () => {
 
   // Dados de exemplo para as galerias - você pode substituir por dados reais
   const empreendimentosImages = [
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80',
-    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1000&q=80',
-    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1000&q=80',
-    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1000&q=80',
+    '/imgs/generated/empreendimentos/1.webp',
+    '/imgs/generated/empreendimentos/2.webp',
+    '/imgs/generated/empreendimentos/3.webp',
+    '/imgs/generated/empreendimentos/4.webp',
+    '/imgs/generated/empreendimentos/5.webp',
+    '/imgs/generated/empreendimentos/6.webp',
   ];
 
   const lancamentosImages = [
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=80',
+    '/imgs/generated/empreend-lancamentos/1.webp',
+    '/imgs/generated/empreend-lancamentos/2.webp',
+    '/imgs/generated/empreend-lancamentos/3.webp',
+    '/imgs/generated/empreend-lancamentos/4.webp',
+    '/imgs/generated/empreend-lancamentos/5.webp',
+    '/imgs/generated/empreend-lancamentos/6.webp',
   ];
 
   const vendasImages = [
-    'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=1000&q=80',
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&q=80',
+    '/imgs/generated/empreend-vendas/1.webp',
+    '/imgs/generated/empreend-vendas/2.webp',
+    '/imgs/generated/empreend-vendas/3.webp',
+    '/imgs/generated/empreend-vendas/4.webp',
+    '/imgs/generated/empreend-vendas/5.webp',
   ];
 
   const GallerySection = ({

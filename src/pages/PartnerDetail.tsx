@@ -7,6 +7,7 @@ import { ExternalLink, ArrowLeft, MapPin, Globe, CreditCard, Building2, FileText
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Marquee } from '@/components/ui/marquee';
 import { GlassButton } from '@/components/ui/glass-button';
+import { SelosMarquee } from '@/components/ui/selos-marquee';
 import { partnersData } from '@/data/partners';
 import { submitToGoogleSheets, formatTrademarkData } from '@/lib/googleSheets';
 
@@ -196,6 +197,14 @@ const PartnerDetail = () => {
         </div>
       </section>
 
+      {/* Selos Marquee - Specific for Agroplantio and TB Par */}
+      {(partner.id === 'agroplantio' || partner.id.startsWith('tbpar-')) && (
+        <section className="bg-background border-t border-border/20">
+          <div className="container mx-auto">
+            <SelosMarquee className="py-8" />
+          </div>
+        </section>
+      )}
 
       {/* Stats Marquee Section - Genérico para todas as empresas */}
       <section className="py-8 bg-background border-y border-border/50">

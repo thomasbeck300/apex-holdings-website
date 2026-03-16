@@ -12,6 +12,7 @@ import { AnimatedUnderline } from '@/components/ui/animated-underline';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { AnimatedCTASection } from '@/components/ui/animated-cta-section';
 import { Marquee } from '@/components/ui/marquee';
+import { SelosMarquee } from '@/components/ui/selos-marquee';
 import { Testimonials3D } from '@/components/ui/testimonials-3d';
 import KineticScrollGallery from '@/components/ui/kinetic-scroll-gallery';
 import { ElegantMobileGallery } from '@/components/ui/elegant-mobile-gallery';
@@ -26,24 +27,24 @@ const Home = () => {
   // Projects images organized by category
   const projectsByCategory = {
     frigorifico: [
-      'https://images.unsplash.com/photo-1533991022833-ad47ac91974e?w=1000&q=80',
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=1000&q=80',
-      'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1000&q=80',
+      '/imgs/generated/home-frigorifico-1.webp',
+      '/imgs/generated/home-frigorifico-2.webp',
+      '/imgs/generated/home-frigorifico-3.webp',
     ],
     pavilhao: [
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80', // bvQwZ85JBSg (Warehouse)
-      'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000&q=80', // FB7QTOXs6q0 (Modern building)
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&q=80', // yggPEMypLUI (Sleek architecture)
+      '/imgs/generated/home-pavilhao-1.webp',
+      '/imgs/generated/home-pavilhao-2.webp',
+      '/imgs/generated/home-pavilhao-3.webp',
     ],
     distribuidora: [
-      'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=1000&q=80', // -rmA0xZAdhY (Cold storage)
-      'https://images.unsplash.com/photo-1519003722824-192d992a6059?w=1000&q=80', // fS1RwhY3Ytk (Industrial facility)
-      'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000&q=80', // Valid logistics hub
+      '/imgs/generated/home-distribuidora-1.webp',
+      '/imgs/generated/home-distribuidora-2.webp',
+      '/imgs/generated/home-distribuidora-3.webp',
     ],
     escritorio: [
-      'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1000&q=80',
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&q=80',
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1000&q=80',
+      '/imgs/generated/home-escritorio-1.webp',
+      '/imgs/generated/home-escritorio-2.webp',
+      '/imgs/generated/home-escritorio-3.webp',
     ],
   };
 
@@ -321,6 +322,13 @@ const Home = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Selos Section */}
+      <section className="bg-background border-b border-border/50">
+        <div className="container mx-auto">
+          <SelosMarquee />
         </div>
       </section>
 
