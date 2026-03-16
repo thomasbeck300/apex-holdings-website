@@ -2,11 +2,11 @@ import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { cn } from "@/lib/utils";
 
 const SELOS = [
-  { src: "/imgs/selos/CAMARA_COMERCIO_ARABE_BR.png", alt: "Câmara de Comércio Árabe-Brasileira" },
-  { src: "/imgs/selos/CIC.png", alt: "CIC" },
-  { src: "/imgs/selos/FDA.png", alt: "FDA" },
-  { src: "/imgs/selos/HALAL.png", alt: "Halal" },
-  { src: "/imgs/selos/KOSHER.png", alt: "Kosher" },
+  { src: "/imgs/selos/CAMARA_COMERCIO_ARABE_BR.webp", alt: "Câmara de Comércio Árabe-Brasileira" },
+  { src: "/imgs/selos/CIC.webp", alt: "CIC" },
+  { src: "/imgs/selos/FDA.webp", alt: "FDA" },
+  { src: "/imgs/selos/HALAL.webp", alt: "Halal" },
+  { src: "/imgs/selos/KOSHER.webp", alt: "Kosher" },
 ];
 
 export function SelosMarquee({ className }: { className?: string }) {
